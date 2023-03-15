@@ -1,8 +1,8 @@
-package src;
+package client.src;
 
 import java.awt.Color;
 
-import src.ihm.FrameDessin;
+import client.src.vue.FrameDessin;
 
 public class Controleur {
     

@@ -1,6 +1,6 @@
-package src.ihm;
+package client.src.vue;
 
-import src.Controleur;
+import client.src.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
