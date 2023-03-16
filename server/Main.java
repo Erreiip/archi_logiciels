@@ -2,12 +2,16 @@ package server;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import server.src.Serveur;
+
 public class Main {
 
     public static void main(String[] args) {
         FlatLightLaf.setup();
 
-        new Serveur();
+        try{
+            new Serveur();
+        } catch(Exception e) { e.printStackTrace(); }
     }
     
 }
