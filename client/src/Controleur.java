@@ -16,12 +16,16 @@ public class Controleur {
     }
 
 
-    private String getActionCourante() {
+    public String getActionCourante() {
         return this.actionCourante;
     }
 
     public Color getCouleurCourante() {
         return this.couleurCourante;
+    }
+
+    public boolean getCBremplissage() {
+        return this.ihm.getCBremplissage();
     }
 
 
