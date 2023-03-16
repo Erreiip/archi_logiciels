@@ -13,6 +13,10 @@ public class Serveur
     public static String IP_MCAST = "225.1.1.1";
 
 
+    //-----------------//
+    //    DONNEES      //
+    //-----------------//
+
     private MulticastSocket ms;
 
     private InetAddress mcast;
@@ -24,6 +28,9 @@ public class Serveur
         ms = new MulticastSocket();
 
         mcast = InetAddress.getByName(IP_MCAST);
+
+        ThreadRecepteur tr = new ThreadRecepteur(this, ms);
+        tr.start();
     }
 
     public void send() throws Exception

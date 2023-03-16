@@ -20,15 +20,18 @@ public class ThreadRecepteur extends Thread
 
     public void run()
     {
-        try 
+        while( true )
         {
-            DatagramPacket dp = new DatagramPacket(new byte[512], 512);
+            try 
+            {
+                DatagramPacket dp = new DatagramPacket(new byte[512], 512);
 
-            ms.receive(dp);
+                ms.receive(dp);
 
-            traiter(new String(dp.getData()));
+                traiter(new String(dp.getData()));
 
-        } catch(Exception e) { e.printStackTrace(); }
+            } catch(Exception e) { e.printStackTrace(); }
+        }
         
     }
 
