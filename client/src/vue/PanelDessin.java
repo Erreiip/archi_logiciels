@@ -56,17 +56,17 @@ public class PanelDessin extends JPanel {
         this.repaint();
     }
 
-    public Shape getShape(Point pointFin) {
+    public Shape getShape(Point pntFin) {
         Shape shape;
         switch (this.ctrl.getActionCourante()) {
             case "Cercle":
-                shape = new Ellipse2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pointFin.getX(),this.pntDebut.getX()), Math.min(pointFin.getY(),this.pntDebut.getY()));
+                shape = new Ellipse2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pntFin.getX(),this.pntDebut.getX()), Math.min(pntFin.getY(),this.pntDebut.getY()));
                 break;
             case "Rectangle":
-                shape = new Rectangle2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), pointFin.getX(), pointFin.getY());
+                shape = new Rectangle2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
                 break;
             case "Ligne":
-                shape = new Line2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), pointFin.getX(), pointFin.getY());
+                shape = new Line2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
                 break;
             default: 
                 shape = null;
@@ -76,17 +76,41 @@ public class PanelDessin extends JPanel {
         return shape;
     }
 
-    public void setPointFin(Point pointFin) {
+    public void setPointFin(Point pntFin) {
         if (PanelDessin.this.shapeCreation instanceof Ellipse2D ) {
-                ((Ellipse2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pointFin.getX(),this.pntDebut.getX()), Math.min(pointFin.getY(),this.pntDebut.getY()));
+            Double diametre = Math.min(Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+
+            if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY()) {
+                ((Ellipse2D) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
+            }
+            else if (pntFin.getX() < this.pntDebut.getX()) {
+                ((Ellipse2D) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                return;
+            }
+            else if (pntFin.getY() < this.pntDebut.getY()) {
+                ((Ellipse2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                return;
+            }
+            else {
+                ((Ellipse2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                return;
+            }      
         }
+
         if (PanelDessin.this.shapeCreation instanceof Rectangle2D ) {
-                ((Rectangle2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pointFin.getX()-this.pntDebut.getX()), Math.abs(pointFin.getY()-this.pntDebut.getY()));
+            if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY())
+                ((Rectangle2D) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+            else if (pntFin.getX() < this.pntDebut.getX())
+                ((Rectangle2D) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+            else if (pntFin.getY() < this.pntDebut.getY())
+                ((Rectangle2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+            else
+                ((Rectangle2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
         }
         if (PanelDessin.this.shapeCreation instanceof Line2D ) {
-                ((Line2D) this.shapeCreation ).setLine(this.pntDebut.getX(), this.pntDebut.getY(), pointFin.getX(), pointFin.getY());
+                ((Line2D) this.shapeCreation ).setLine(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
                 return;
         }
     }
