@@ -38,21 +38,22 @@ public class PanelDessin extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for(Shape forme : this.alFormes) {
+        for (Shape forme : this.alFormes) {
             Graphics2D g2d = (Graphics2D) g;
 
             g2d.setColor(this.ctrl.getCouleurCourante());
             g2d.setStroke(new BasicStroke(5));
             g2d.draw(forme);
 
-            if(this.ctrl.getCBremplissage()) {
+            if (this.ctrl.getCBremplissage()) {
                 g2d.fill(forme);
             }
         }
     }
 
-    public void dessinerForme(Shape forme) {
-        //System.out.println(this.alFormes);
+    public void maj(ArrayList<Shape> alFormes)
+    {
+        this.alFormes = alFormes;
         this.repaint();
     }
 
@@ -128,7 +129,7 @@ public class PanelDessin extends JPanel {
 
         public void mouseReleased(MouseEvent e) {
             PanelDessin.this.bCreation = false;
-            PanelDessin.this.dessinerForme(PanelDessin.this.shapeCreation);
+            PanelDessin.this.repaint();
         }
 
         public void mouseDragged(MouseEvent e) {

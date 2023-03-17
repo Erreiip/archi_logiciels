@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 public class Serveur 
 {
     public static String IP_MCAST = "225.1.1.1";
+    public static int PORT = 2009;
 
 
     //-----------------//
@@ -45,7 +46,7 @@ public class Serveur
 
         String longueur = byteArray.length + "";
 
-        DatagramPacket dp = new DatagramPacket(longueur.getBytes(),longueur.length(), mcast,2009);
+        DatagramPacket dp = new DatagramPacket(longueur.getBytes(),longueur.length(), mcast, Serveur.PORT);
 
         ms.send(dp);
 

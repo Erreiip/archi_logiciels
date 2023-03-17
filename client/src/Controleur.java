@@ -1,6 +1,8 @@
 package client.src;
 
 import java.awt.Color;
+import java.awt.Shape;
+import java.util.ArrayList;
 
 import client.src.vue.FrameDessin;
 
@@ -39,8 +41,8 @@ public class Controleur {
         System.out.println("Action courante : " + this.actionCourante);
     }
 
-    
-    public static void main(String[] args) {
-        new Controleur();
+    public void maj(ArrayList<Shape> alFormes)
+    {
+        this.ihm.maj(alFormes);
     }
 }

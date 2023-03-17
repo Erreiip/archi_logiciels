@@ -4,6 +4,7 @@ import client.src.Controleur;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FrameDessin extends JFrame {
     
@@ -34,5 +35,10 @@ public class FrameDessin extends JFrame {
 
     public boolean getCBremplissage() {
         return this.panelHaut.getCBremplissage();
+    }
+
+    public void maj(ArrayList<Shape> alFormes)
+    {
+        this.panelDessin.maj(alFormes);
     }
 }
