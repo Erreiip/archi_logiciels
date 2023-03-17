@@ -1,6 +1,9 @@
 package client.src.vue;
 
 import client.src.Controleur;
+import client.src.commons.MaLigne;
+import client.src.commons.MonEllipse;
+import client.src.commons.MonRectangle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -35,6 +38,10 @@ public class PanelDessin extends JPanel {
         this.setLayout(null);
     }
 
+    public ArrayList<Shape> getAlFormes() {
+        return this.alFormes;
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -42,6 +49,16 @@ public class PanelDessin extends JPanel {
             Graphics2D g2d = (Graphics2D) g;
 
             g2d.setColor(this.ctrl.getCouleurCourante());
+            if (forme instanceof MonRectangle) {
+                g2d.setColor(((MonRectangle) forme).getCouleur());
+            }
+            else if (forme instanceof MonEllipse) {
+                g2d.setColor(((MonEllipse) forme).getCouleur());
+            }
+            else if (forme instanceof MaLigne) {
+                g2d.setColor(((MaLigne) forme).getCouleur());
+            }
+
             g2d.setStroke(new BasicStroke(5));
             g2d.draw(forme);
 
@@ -58,60 +75,62 @@ public class PanelDessin extends JPanel {
     }
 
     public Shape getShape(Point pntFin) {
-        Shape shape;
         switch (this.ctrl.getActionCourante()) {
             case "Cercle":
-                shape = new Ellipse2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pntFin.getX(),this.pntDebut.getX()), Math.min(pntFin.getY(),this.pntDebut.getY()));
-                break;
+                MonEllipse oval = (MonEllipse) new MonEllipse(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pntFin.getX(),this.pntDebut.getX()), Math.min(pntFin.getY(),this.pntDebut.getY()));
+                oval.setCouleur(this.ctrl.getCouleurCourante());
+                oval.setRemplissage(this.ctrl.getCBremplissage());
+                return oval;
             case "Rectangle":
-                shape = new Rectangle2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
-                break;
+                MonRectangle rectangle = (MonRectangle) new MonRectangle(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
+                rectangle.setCouleur(this.ctrl.getCouleurCourante());
+                rectangle.setRemplissage(this.ctrl.getCBremplissage());
+                return rectangle;
             case "Ligne":
-                shape = new Line2D.Double(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
-                break;
+                MaLigne ligne = new MaLigne(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
+                ligne.setCouleur(this.ctrl.getCouleurCourante());
+                ligne.setRemplissage(bCreation);
+                return ligne;
             default: 
-                shape = null;
-                break;
+                return null;
         }
-
-        return shape;
     }
 
     public void setPointFin(Point pntFin) {
-        if (PanelDessin.this.shapeCreation instanceof Ellipse2D ) {
+        if (PanelDessin.this.shapeCreation instanceof MonEllipse ) {
             Double diametre = Math.min(Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
 
             if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY()) {
-                ((Ellipse2D) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonEllipse) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
             }
             else if (pntFin.getX() < this.pntDebut.getX()) {
-                ((Ellipse2D) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonEllipse) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
             }
             else if (pntFin.getY() < this.pntDebut.getY()) {
-                ((Ellipse2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
             }
             else {
-                ((Ellipse2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
             }      
         }
 
-        if (PanelDessin.this.shapeCreation instanceof Rectangle2D ) {
+        if (PanelDessin.this.shapeCreation instanceof MonRectangle ) {
             if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY())
-                ((Rectangle2D) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonRectangle) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
             else if (pntFin.getX() < this.pntDebut.getX())
-                ((Rectangle2D) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonRectangle) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
             else if (pntFin.getY() < this.pntDebut.getY())
-                ((Rectangle2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonRectangle) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
             else
-                ((Rectangle2D) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+                ((MonRectangle) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
         }
-        if (PanelDessin.this.shapeCreation instanceof Line2D ) {
-                ((Line2D) this.shapeCreation ).setLine(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
+        if (PanelDessin.this.shapeCreation instanceof MaLigne ) {
+                ((MaLigne) this.shapeCreation ).setLine(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
                 return;
         }
     }
