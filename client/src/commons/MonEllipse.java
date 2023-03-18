@@ -3,7 +3,7 @@ package client.src.commons;
 import java.awt.geom.Ellipse2D;
 import java.awt.Color;
 
-public class MonEllipse extends Ellipse2D.Double{
+public class MonEllipse extends Ellipse2D.Double implements IDessin{
     
     private Color   couleur;
     private boolean bRemplissage;

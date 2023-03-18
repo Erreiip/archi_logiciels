@@ -3,7 +3,7 @@ package client.src.commons;
 import java.awt.geom.Line2D;
 import java.awt.Color;
 
-public class MaLigne extends Line2D.Double {
+public class MaLigne extends Line2D.Double implements IDessin{
     
     private Color   couleur;
     private boolean bRemplissage;

@@ -3,7 +3,7 @@ package client.src.commons;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 
-public class MonRectangle extends Rectangle2D.Double {
+public class MonRectangle extends Rectangle2D.Double implements IDessin{
     
     private Color   couleur;
     private boolean bRemplissage;

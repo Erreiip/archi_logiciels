@@ -1,6 +1,7 @@
 package client.src.vue;
 
 import client.src.Controleur;
+import client.src.commons.IDessin;
 import client.src.commons.MaLigne;
 import client.src.commons.MonEllipse;
 import client.src.commons.MonRectangle;
@@ -48,21 +49,12 @@ public class PanelDessin extends JPanel {
         for (Shape forme : this.alFormes) {
             Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setColor(this.ctrl.getCouleurCourante());
-            if (forme instanceof MonRectangle) {
-                g2d.setColor(((MonRectangle) forme).getCouleur());
-            }
-            else if (forme instanceof MonEllipse) {
-                g2d.setColor(((MonEllipse) forme).getCouleur());
-            }
-            else if (forme instanceof MaLigne) {
-                g2d.setColor(((MaLigne) forme).getCouleur());
-            }
+            g2d.setColor(((IDessin) forme).getCouleur());
 
             g2d.setStroke(new BasicStroke(5));
             g2d.draw(forme);
 
-            if (this.ctrl.getCBremplissage()) {
+            if (((IDessin) forme).getRemplissage()) {
                 g2d.fill(forme);
             }
         }
