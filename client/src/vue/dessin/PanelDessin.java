@@ -1,4 +1,4 @@
-package client.src.vue;
+package client.src.vue.dessin;
 
 import client.src.Controleur;
 import client.src.commons.IDessin;

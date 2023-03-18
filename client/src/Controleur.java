@@ -5,7 +5,7 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 import client.src.metier.Metier;
-import client.src.vue.FrameDessin;
+import client.src.vue.dessin.FrameDessin;
 
 public class Controleur {
     
