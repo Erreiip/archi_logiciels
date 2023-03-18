@@ -17,7 +17,7 @@ public class PanelDessin extends JPanel {
     
     private Controleur ctrl;
 
-    private Shape shapeCreation;
+    private IDessin shapeCreation;
     private boolean bCreation;
     private Point pntDebut;
     private Graphics2D g2d;
@@ -42,28 +42,34 @@ public class PanelDessin extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        ArrayList<Shape> alFormes = this.ctrl.getAlShape();
+        ArrayList<IDessin> alFormes = this.ctrl.getAlShape();
 
-        for (Shape forme : alFormes) {
+        for (IDessin forme : alFormes) {
             Graphics2D g2d = (Graphics2D) g;
 
             g2d.setColor(((IDessin) forme).getCouleur());
 
             g2d.setStroke(new BasicStroke(5));
-            g2d.draw(forme);
+            if (forme instanceof MonTexte) {
+                g2d.drawString(((MonTexte) forme).getTexte(),(int) Math.round(((MonTexte)forme).getX()), (int) Math.round(((MonTexte)forme).getY()));
+            }
+            else if (forme instanceof Shape) {
+                g2d.draw((Shape) forme);
+            }
 
             if (((IDessin) forme).getRemplissage()) {
-                g2d.fill(forme);
+                if (forme instanceof Shape)
+                    g2d.fill((Shape) forme);
             }
         }
     }
 
-    public void maj(ArrayList<Shape> alFormes)
+    public void maj(ArrayList<IDessin> alFormes)
     {
         this.repaint();
     }
 
-    public Shape getShape(Point pntFin) {
+    public IDessin getShape(Point pntFin) {
         switch (this.ctrl.getActionCourante()) {
             case "Cercle":
                 MonEllipse oval = (MonEllipse) new MonEllipse(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pntFin.getX(),this.pntDebut.getX()), Math.min(pntFin.getY(),this.pntDebut.getY()));
@@ -84,6 +90,8 @@ public class PanelDessin extends JPanel {
                 String input = JOptionPane.showInputDialog(null,"Entrez un texte : ",JOptionPane.QUESTION_MESSAGE);
                 MonTexte texte = new MonTexte(input, this.pntDebut.getX(), this.pntDebut.getY());
                 texte.setCouleur(this.ctrl.getCouleurCourante());
+                texte.setRemplissage(bCreation);
+                return texte;
             default: 
                 return null;
         }

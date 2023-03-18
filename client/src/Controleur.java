@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import client.src.metier.Metier;
 import client.src.vue.connection.FrameConnection;
 import client.src.vue.dessin.FrameDessin;
+import client.src.commons.IDessin;
 
 public class Controleur {
     
@@ -49,15 +50,15 @@ public class Controleur {
         this.metier.setActionCourante(actionCourante);
     }
 
-    public void ajouterForme(Shape s) {
+    public void ajouterForme(IDessin s) {
         this.metier.ajouterForme(s);
     }
 
-    public ArrayList<Shape> getAlShape() {
+    public ArrayList<IDessin> getAlShape() {
         return this.metier.getAlShape();
     }
 
-    public void maj(ArrayList<Shape> alFormes)
+    public void maj(ArrayList<IDessin> alFormes)
     {
         ((FrameDessin) this.ihm).maj(alFormes);
     }

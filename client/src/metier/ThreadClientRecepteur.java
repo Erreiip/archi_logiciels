@@ -3,6 +3,9 @@ package client.src.metier;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
+
+import client.src.commons.IDessin;
+
 import java.awt.Shape;
 
 
@@ -39,7 +42,7 @@ public class ThreadClientRecepteur extends Thread
 
                     //le convertien en ArrayLIst
 
-                    ArrayList<Shape> alFormes = null;
+                    ArrayList<IDessin> alFormes = null;
 
                     client.maj( alFormes );
                 }

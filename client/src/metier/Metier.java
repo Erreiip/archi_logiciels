@@ -1,6 +1,7 @@
 package client.src.metier;
 
 import client.src.Controleur;
+import client.src.commons.IDessin;
 
 import java.awt.Color;
 import java.awt.Shape;
@@ -18,13 +19,13 @@ public class Metier
     private Color couleurCourante;
     private String actionCourante;
 
-    private ArrayList<Shape> alShape;
+    private ArrayList<IDessin> alShape;
 
     public Metier( Controleur ctrl )
     {
         this.ctrl = ctrl;
 
-        this.alShape = new ArrayList<Shape>();
+        this.alShape = new ArrayList<IDessin>();
         this.nom = "guest";
 
         this.client = new Client(this.ctrl);
@@ -33,11 +34,11 @@ public class Metier
         this.actionCourante = "Cercle";
     }
 
-    public ArrayList<Shape> getAlShape() {
+    public ArrayList<IDessin> getAlShape() {
         return this.alShape;
     }
 
-    public void ajouterForme(Shape s) {
+    public void ajouterForme(IDessin s) {
         this.alShape.add(s);
     }
     

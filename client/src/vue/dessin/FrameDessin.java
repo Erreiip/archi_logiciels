@@ -1,6 +1,7 @@
 package client.src.vue.dessin;
 
 import client.src.Controleur;
+import client.src.commons.IDessin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +38,7 @@ public class FrameDessin extends JFrame {
         return this.panelHaut.getCBremplissage();
     }
 
-    public void maj(ArrayList<Shape> alFormes)
+    public void maj(ArrayList<IDessin> alFormes)
     {
         this.panelDessin.maj(alFormes);
     }

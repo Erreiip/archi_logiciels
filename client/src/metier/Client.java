@@ -6,6 +6,7 @@ import java.net.MulticastSocket;
 import java.util.ArrayList;
 
 import client.src.Controleur;
+import client.src.commons.IDessin;
 
 import java.awt.Shape;
 
@@ -56,7 +57,7 @@ public class Client
         this.ms.send(dp);
     }
 
-    public void maj(ArrayList<Shape> alFormes)
+    public void maj(ArrayList<IDessin> alFormes)
     {
         this.ctrl.maj(alFormes);
     }
