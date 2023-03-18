@@ -87,10 +87,11 @@ public class PanelDessin extends JPanel {
                 ligne.setRemplissage(bCreation);
                 return ligne;
             case "Texte" :
-                String input = JOptionPane.showInputDialog(null,"Entrez un texte : ",JOptionPane.QUESTION_MESSAGE);
+                String input = JOptionPane.showInputDialog(null,"Entrez un texte : ",null);
                 MonTexte texte = new MonTexte(input, this.pntDebut.getX(), this.pntDebut.getY());
                 texte.setCouleur(this.ctrl.getCouleurCourante());
                 texte.setRemplissage(bCreation);
+                this.repaint();
                 return texte;
             default: 
                 return null;
