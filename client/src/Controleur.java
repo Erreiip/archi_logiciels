@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.util.ArrayList;
 
-import client.src.metier.Client;
 import client.src.metier.Metier;
 import client.src.vue.FrameDessin;
 
@@ -40,6 +39,14 @@ public class Controleur {
     
     public void setActionCourante(String actionCourante) {
         this.metier.setActionCourante(actionCourante);
+    }
+
+    public void ajouterForme(Shape s) {
+        this.metier.ajouterForme(s);
+    }
+
+    public ArrayList<Shape> getAlShape() {
+        return this.metier.getAlShape();
     }
 
     public void maj(ArrayList<Shape> alFormes)

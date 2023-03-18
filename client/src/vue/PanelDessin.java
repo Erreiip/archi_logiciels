@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PanelDessin extends JPanel {
     
     private Controleur ctrl;
-    private ArrayList<Shape> alFormes;
+
     private Shape shapeCreation;
     private boolean bCreation;
     private Point pntDebut;
@@ -24,8 +24,6 @@ public class PanelDessin extends JPanel {
 
     public PanelDessin(Controleur ctrl) { 
         this.ctrl = ctrl;
-
-        this.alFormes = new ArrayList<Shape>();
         
         this.shapeCreation = null;
         
@@ -39,14 +37,13 @@ public class PanelDessin extends JPanel {
         this.setLayout(null);
     }
 
-    public ArrayList<Shape> getAlFormes() {
-        return this.alFormes;
-    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Shape forme : this.alFormes) {
+        ArrayList<Shape> alFormes = this.ctrl.getAlShape();
+
+        for (Shape forme : alFormes) {
             Graphics2D g2d = (Graphics2D) g;
 
             g2d.setColor(((IDessin) forme).getCouleur());
@@ -62,7 +59,6 @@ public class PanelDessin extends JPanel {
 
     public void maj(ArrayList<Shape> alFormes)
     {
-        this.alFormes = alFormes;
         this.repaint();
     }
 
@@ -134,7 +130,7 @@ public class PanelDessin extends JPanel {
             if ( PanelDessin.this.ctrl.getActionCourante() != "Effacer") {
                 PanelDessin.this.bCreation = true;
                 PanelDessin.this.shapeCreation = getShape(e.getPoint());
-                PanelDessin.this.alFormes.add(PanelDessin.this.shapeCreation);
+                PanelDessin.this.ctrl.ajouterForme(PanelDessin.this.shapeCreation);
             }
         }
 
