@@ -5,6 +5,7 @@ import client.src.commons.IDessin;
 import client.src.commons.MaLigne;
 import client.src.commons.MonEllipse;
 import client.src.commons.MonRectangle;
+import client.src.commons.MonTexte;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -79,6 +80,10 @@ public class PanelDessin extends JPanel {
                 ligne.setCouleur(this.ctrl.getCouleurCourante());
                 ligne.setRemplissage(bCreation);
                 return ligne;
+            case "Texte" :
+                String input = JOptionPane.showInputDialog(null,"Entrez un texte : ",JOptionPane.QUESTION_MESSAGE);
+                MonTexte texte = new MonTexte(input, this.pntDebut.getX(), this.pntDebut.getY());
+                texte.setCouleur(this.ctrl.getCouleurCourante());
             default: 
                 return null;
         }
