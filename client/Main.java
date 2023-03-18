@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         FlatLightLaf.setup();
 
-        new Controleur();
+        try{ new Controleur(); } catch(Exception e) {}
     }
     
 }

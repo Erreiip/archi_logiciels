@@ -4,26 +4,29 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.util.ArrayList;
 
+import client.src.metier.Client;
+import client.src.metier.Metier;
 import client.src.vue.FrameDessin;
 
 public class Controleur {
     
     private FrameDessin ihm;
-    private Color couleurCourante;
-    private String actionCourante;
+
+    private Metier metier;
+
     
     public Controleur() {
         this.ihm = new FrameDessin(this);
-        this.couleurCourante = Color.BLACK;
+        this.metier = new Metier(this);
     }
 
 
     public String getActionCourante() {
-        return this.actionCourante;
+        return this.metier.getActionCourante();
     }
 
     public Color getCouleurCourante() {
-        return this.couleurCourante;
+        return this.metier.getCouleurCourante();
     }
 
     public boolean getCBremplissage() {
@@ -32,13 +35,11 @@ public class Controleur {
 
 
     public void setCouleurCourante(Color couleurCourante) {
-        this.couleurCourante = couleurCourante;
-        System.out.println("Couleur courante : " + this.couleurCourante.toString());
+        this.metier.setCouleurCourante(couleurCourante);
     }
     
     public void setActionCourante(String actionCourante) {
-        this.actionCourante = actionCourante;
-        System.out.println("Action courante : " + this.actionCourante);
+        this.metier.setActionCourante(actionCourante);
     }
 
     public void maj(ArrayList<Shape> alFormes)

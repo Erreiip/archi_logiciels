@@ -1,9 +1,8 @@
-package client.src;
+package client.src.metier;
 
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
-
 import java.awt.Shape;
 
 
