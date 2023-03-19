@@ -7,4 +7,6 @@ public interface IDessin
     public boolean getRemplissage();
     
     public Color getCouleur();
+
+    public int getEpaisseur();
 }

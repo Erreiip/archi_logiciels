@@ -9,17 +9,19 @@ public class MonTexte implements IDessin {
     private Double  y;
     private Color   couleur;
     private boolean bRemplissage;
+    private int     epaisseur;
     
     public MonTexte(String texte, Double x, Double y) {
-        this(texte, x, y, null, false);
+        this(texte, x, y, null, false, 0);
     }
 
-    public MonTexte(String texte, Double x, Double y, Color couleur, boolean bRemplissage) {
+    public MonTexte(String texte, Double x, Double y, Color couleur, boolean bRemplissage, int epaisseur) {
         this.texte = texte;
         this.x = x;
         this.y = y;
         this.couleur = couleur;
         this.bRemplissage = bRemplissage;
+        this.epaisseur = epaisseur;
     }
 
     public String getTexte() {
@@ -42,6 +44,10 @@ public class MonTexte implements IDessin {
         return this.bRemplissage;
     }
 
+    public int getEpaisseur() {
+        return this.epaisseur;
+    }
+
     public void setTexte(String texte) {
         this.texte = texte;
     }
@@ -60,5 +66,9 @@ public class MonTexte implements IDessin {
 
     public void setRemplissage(boolean bRemplissage) {
         this.bRemplissage = bRemplissage;
+    }
+
+    public void setEpaisseur(int epaisseur) {
+        this.epaisseur = epaisseur;
     }
 }

@@ -38,6 +38,10 @@ public class FrameDessin extends JFrame {
         return this.panelHaut.getCBremplissage();
     }
 
+    public int getEpaisseur() {
+        return this.panelHaut.getEpaisseur();
+    }
+
     public void maj(ArrayList<IDessin> alFormes)
     {
         this.panelDessin.maj(alFormes);

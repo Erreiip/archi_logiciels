@@ -10,6 +10,7 @@ public class PanelChoixActions extends JPanel implements ActionListener {
     private Controleur ctrl;
     private JButton[] boutonsActions;
     private JCheckBox CBremplissage;
+    private JSlider sliderEpaisseur;
     private String[] actions;
 
     public PanelChoixActions(Controleur ctrl) {
@@ -17,7 +18,7 @@ public class PanelChoixActions extends JPanel implements ActionListener {
         
         this.actions = new String[]{"Cercle", "Rectangle", "Ligne", "Texte", "Effacer"};
         this.boutonsActions = new JButton[this.actions.length];
-        this.setLayout(new GridLayout(1, this.actions.length, 10, 10));
+        this.setLayout(new GridLayout(1, this.actions.length, 5, 5));
 
         for(int i = 0; i < this.actions.length; i++){
             this.boutonsActions[i] = new JButton(this.actions[i]);
@@ -27,11 +28,21 @@ public class PanelChoixActions extends JPanel implements ActionListener {
         }
         this.CBremplissage = new JCheckBox("Plein");
         this.add(this.CBremplissage);
+
+        this.sliderEpaisseur = new JSlider(JSlider.HORIZONTAL, 1, 20, 1);
+        this.sliderEpaisseur.setMajorTickSpacing(1);
+        this.sliderEpaisseur.setPaintTicks(true);
+        this.add(this.sliderEpaisseur);
+
     }
 
 
     public boolean getCBremplissage() {
         return this.CBremplissage.isSelected();
+    }
+
+    public int getEpaisseur() {
+        return this.sliderEpaisseur.getValue();
     }
 
     public void actionPerformed(ActionEvent e) {

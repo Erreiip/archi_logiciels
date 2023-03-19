@@ -41,6 +41,10 @@ public class Controleur {
         return ((FrameDessin) this.ihm).getCBremplissage();
     }
 
+    public int getEpaisseur() {
+        return ((FrameDessin) this.ihm).getEpaisseur();
+    }
+
 
     public void setCouleurCourante(Color couleurCourante) {
         this.metier.setCouleurCourante(couleurCourante);
