@@ -51,6 +51,7 @@ public class PanelDessin extends JPanel {
 
             g2d.setStroke(new BasicStroke(((IDessin) forme).getEpaisseur()));
             if (forme instanceof MonTexte) {
+                g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + forme.getEpaisseur()));
                 g2d.drawString(((MonTexte) forme).getTexte(),(int) Math.round(((MonTexte)forme).getX()), (int) Math.round(((MonTexte)forme).getY()));
             }
             else if (forme instanceof Shape) {
