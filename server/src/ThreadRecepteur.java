@@ -1,8 +1,15 @@
 package server.src;
 
+import java.awt.Color;
+import java.awt.Shape;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
+
+import client.src.commons.MaLigne;
+import client.src.commons.MonEllipse;
+import client.src.commons.MonRectangle;
+import client.src.commons.MonTexte;
 
 public class ThreadRecepteur extends Thread
 {
@@ -41,24 +48,24 @@ public class ThreadRecepteur extends Thread
 
         String[] tabInfos = s.split(";");
 
-        String nomClasse;
-        String x;
-        String y;
-        String w;
-        String h;
-        String remplissage;
-        String epaisseur;
-        String couleur;
-        
+        String nomClasse = tabInfos[0];
+        Double x = null;
+        Double y = null;
+        Double w = null;
+        Double h = null;
+        String remplissage = null;
+        Integer epaisseur = null;
+        Integer couleur = null;
 
-        for (String info : tabInfos) {
-            String[] split = info.split(":");
+                
+        for (int cpt = 1; cpt < tabInfos.length; cpt++) {
+            String[] split = tabInfos[cpt].split(":");
 
             String type = split[0];
             String valeur = split[1];
 
             if (type.equals("e")) {
-                epaisseur = valeur;
+                epaisseur = Integer.parseInt(valeur);
             }
 
             if (type.equals("r")) {
@@ -66,27 +73,46 @@ public class ThreadRecepteur extends Thread
             }
 
             if (type.equals("c")) {
-                couleur = valeur;
+                couleur = Integer.parseInt(valeur);
             }
 
             if (type.equals("x")) {
-                x = valeur;
+                x = Double.parseDouble(valeur);
             }
 
             if (type.equals("y")) {
-                y = valeur;
+                y = Double.parseDouble(valeur);
             }
 
             if (type.equals("w")) {
-                w = valeur;
+                w = Double.parseDouble(valeur);
             }
 
             if (type.equals("h")) {
-                h = valeur;
+                h = Double.parseDouble(valeur);
             }
         }
-
         
+
+        Shape shape = null;
+
+        if (nomClasse.equals(MonEllipse.class.getSimpleName())) {
+            shape = new MonEllipse(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
+        }
+
+        if (nomClasse.equals(MonRectangle.class.getSimpleName())) {
+            shape = new MonRectangle(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
+        }
+
+        if (nomClasse.equals(MaLigne.class.getSimpleName())) {
+            shape = new MaLigne(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
+        }
+
+        if (nomClasse.equals(MonTexte.class.getSimpleName())) {
+            // faut faire une conditipon spéciale au début shape = new MonTexte(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
+        }
+
+        System.out.println(shape);
 
     }
 }
