@@ -52,9 +52,9 @@ public class PanelDessin extends JPanel {
             g2d.setStroke(new BasicStroke(((IDessin) forme).getEpaisseur()));
             if (forme instanceof MonTexte) {
                 g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + forme.getEpaisseur()));
-                g2d.drawString(((MonTexte) forme).getTexte(),(int) Math.round(((MonTexte)forme).getX()), (int) Math.round(((MonTexte)forme).getY()));
-            }
-            else if (forme instanceof Shape) {
+                g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
+                        (int) Math.round(((MonTexte) forme).getY()));
+            } else if (forme instanceof Shape) {
                 g2d.draw((Shape) forme);
             }
 
@@ -63,6 +63,11 @@ public class PanelDessin extends JPanel {
                     g2d.fill((Shape) forme);
             }
         }
+    }
+
+    public void send()
+    {
+        this.ctrl.send(this.shapeCreation);
     }
 
     public void maj(ArrayList<IDessin> alFormes)
@@ -155,6 +160,7 @@ public class PanelDessin extends JPanel {
 
         public void mouseReleased(MouseEvent e) {
             PanelDessin.this.bCreation = false;
+            PanelDessin.this.send();
             PanelDessin.this.repaint();
         }
 

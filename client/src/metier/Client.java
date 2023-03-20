@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import client.src.Controleur;
 import client.src.commons.IDessin;
 
+import java.awt.Color;
 import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 
 
 public class Client 
@@ -55,6 +57,18 @@ public class Client
         DatagramPacket dp = new DatagramPacket(shape.getBytes(), shape.length(), this.mcast, PORT);
 
         this.ms.send(dp);
+    }
+
+    public void send(IDessin forme)
+    {
+        Shape shape = (Shape) forme;
+        Color couleurForme = forme.getCouleur();
+        String envoie = forme.getClass().getSimpleName() + ";x:" + shape.getBounds2D().getX() +
+                ";y:" + shape.getBounds2D().getY() + ";w:" + shape.getBounds2D().getWidth() +
+                ";h:" + shape.getBounds2D().getHeight() + ";r:" + forme.getRemplissage() +
+                ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB();
+
+        System.out.println(envoie);
     }
 
     public void maj(ArrayList<IDessin> alFormes)

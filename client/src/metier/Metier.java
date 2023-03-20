@@ -61,5 +61,10 @@ public class Metier
     public void setNom(String nom)
     {
         this.nom = nom;
-    }    
+    }
+
+    public void send(IDessin forme)
+    {
+        this.client.send(forme);
+    }  
 }

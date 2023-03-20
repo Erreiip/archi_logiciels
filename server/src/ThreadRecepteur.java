@@ -38,5 +38,55 @@ public class ThreadRecepteur extends Thread
     public void traiter(String s) 
     {
         System.out.println(s);
+
+        String[] tabInfos = s.split(";");
+
+        String nomClasse;
+        String x;
+        String y;
+        String w;
+        String h;
+        String remplissage;
+        String epaisseur;
+        String couleur;
+        
+
+        for (String info : tabInfos) {
+            String[] split = info.split(":");
+
+            String type = split[0];
+            String valeur = split[1];
+
+            if (type.equals("e")) {
+                epaisseur = valeur;
+            }
+
+            if (type.equals("r")) {
+                remplissage = valeur;
+            }
+
+            if (type.equals("c")) {
+                couleur = valeur;
+            }
+
+            if (type.equals("x")) {
+                x = valeur;
+            }
+
+            if (type.equals("y")) {
+                y = valeur;
+            }
+
+            if (type.equals("w")) {
+                w = valeur;
+            }
+
+            if (type.equals("h")) {
+                h = valeur;
+            }
+        }
+
+        
+
     }
 }

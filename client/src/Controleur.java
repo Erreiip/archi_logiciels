@@ -62,6 +62,11 @@ public class Controleur {
         return this.metier.getAlShape();
     }
 
+    public void send(IDessin forme)
+    {
+        this.metier.send(forme);
+    }
+
     public void maj(ArrayList<IDessin> alFormes)
     {
         ((FrameDessin) this.ihm).maj(alFormes);
