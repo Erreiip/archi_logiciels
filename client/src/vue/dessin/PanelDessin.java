@@ -51,10 +51,16 @@ public class PanelDessin extends JPanel {
 
             g2d.setStroke(new BasicStroke(((IDessin) forme).getEpaisseur()));
             if (forme instanceof MonTexte) {
-                g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + forme.getEpaisseur()));
+                if (forme.getRemplissage()) {
+                    g2d.setFont(new Font("TimesRoman", Font.BOLD, 11 + forme.getEpaisseur()));
+                } else {
+                    g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + forme.getEpaisseur()));
+                }
+
                 g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
                         (int) Math.round(((MonTexte) forme).getY()));
-            } else if (forme instanceof Shape) {
+            }
+            else if (forme instanceof Shape) {
                 g2d.draw((Shape) forme);
             }
 
@@ -78,13 +84,13 @@ public class PanelDessin extends JPanel {
     public IDessin getShape(Point pntFin) {
         switch (this.ctrl.getActionCourante()) {
             case "Cercle":
-                MonEllipse oval = (MonEllipse) new MonEllipse(this.pntDebut.getX(), this.pntDebut.getY(), Math.min(pntFin.getX(),this.pntDebut.getX()), Math.min(pntFin.getY(),this.pntDebut.getY()));
+                MonEllipse oval = (MonEllipse) new MonEllipse(this.pntDebut.getX(), this.pntDebut.getY(), 0, 0);
                 oval.setCouleur(this.ctrl.getCouleurCourante());
                 oval.setRemplissage(this.ctrl.getCBremplissage());
                 oval.setEpaisseur(this.ctrl.getEpaisseur());
                 return oval;
             case "Rectangle":
-                MonRectangle rectangle = (MonRectangle) new MonRectangle(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
+                MonRectangle rectangle = (MonRectangle) new MonRectangle(this.pntDebut.getX(), this.pntDebut.getY(), 0, 0);
                 rectangle.setCouleur(this.ctrl.getCouleurCourante());
                 rectangle.setRemplissage(this.ctrl.getCBremplissage());
                 rectangle.setEpaisseur(this.ctrl.getEpaisseur());
@@ -92,14 +98,14 @@ public class PanelDessin extends JPanel {
             case "Ligne":
                 MaLigne ligne = new MaLigne(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
                 ligne.setCouleur(this.ctrl.getCouleurCourante());
-                ligne.setRemplissage(bCreation);
+                ligne.setRemplissage(this.ctrl.getCBremplissage());
                 ligne.setEpaisseur(this.ctrl.getEpaisseur());
                 return ligne;
             case "Texte" :
                 String input = JOptionPane.showInputDialog(null,"Entrez un texte : ",null);
                 MonTexte texte = new MonTexte(input, this.pntDebut.getX(), this.pntDebut.getY());
                 texte.setCouleur(this.ctrl.getCouleurCourante());
-                texte.setRemplissage(bCreation);
+                texte.setRemplissage(this.ctrl.getCBremplissage());
                 texte.setEpaisseur(this.ctrl.getEpaisseur());
                 this.repaint();
                 return texte;
