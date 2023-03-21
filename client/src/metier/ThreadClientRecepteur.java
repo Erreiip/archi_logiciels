@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import client.src.commons.IDessin;
 
 import java.awt.Shape;
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 
 
 public class ThreadClientRecepteur extends Thread 
@@ -40,9 +42,13 @@ public class ThreadClientRecepteur extends Thread
 
                     this.ms.receive(dp);
 
-                    //le convertien en ArrayLIst
+                    ByteArrayInputStream byteStream = new ByteArrayInputStream(dp.getData());
 
-                    ArrayList<IDessin> alFormes = null;
+                    ObjectInputStream objectStream = new ObjectInputStream(byteStream);
+
+                    ArrayList<IDessin> alFormes = (ArrayList<IDessin>) objectStream.readObject();
+
+                    System.out.println(alFormes); //SOP
 
                     client.maj( alFormes );
                 }

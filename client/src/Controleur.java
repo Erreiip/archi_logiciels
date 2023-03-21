@@ -19,8 +19,8 @@ public class Controleur {
 
     
     public Controleur() {
-        this.ihm = new FrameConnection(this);
         this.metier = new Metier(this);
+        this.ihm = new FrameConnection(this);
     }
 
     public void setNom(String nom) {

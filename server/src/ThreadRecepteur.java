@@ -35,6 +35,8 @@ public class ThreadRecepteur extends Thread
 
                 ms.receive(dp);
 
+                System.out.println(new String(dp.getData()));
+
                 traiter(new String(dp.getData()));
 
             } catch(Exception e) { e.printStackTrace(); }
@@ -112,7 +114,7 @@ public class ThreadRecepteur extends Thread
             // faut faire une conditipon spéciale au début shape = new MonTexte(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
         }
 
-        System.out.println(shape);
+        System.out.println(shape); //SOP
 
     }
 }

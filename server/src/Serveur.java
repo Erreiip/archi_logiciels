@@ -4,6 +4,9 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
+
+import client.src.commons.IDessin;
+
 import java.awt.Shape;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +25,7 @@ public class Serveur
 
     private InetAddress mcast;
 
-    ArrayList<Shape> tableau;
+    ArrayList<IDessin> tableau;
 
     public Serveur() throws Exception
     {
