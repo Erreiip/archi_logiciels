@@ -66,10 +66,17 @@ public class Metier
     public void send(IDessin forme)
     {
         this.client.send(forme);
-    }  
+    }
 
     public void maj(ArrayList<IDessin> alFormes) 
     {
         this.alShape = alFormes;
+    }
+
+    public void delete()
+    {
+        this.client.delete();
+        this.alShape.remove(this.alShape.size() - 1);
+        
     }
 }

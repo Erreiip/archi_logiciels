@@ -72,4 +72,8 @@ public class Controleur {
         this.metier.maj(alFormes);
         ((FrameDessin)this.ihm).maj();
     }
+
+    public void delete() {
+        this.metier.delete();
+    }
 }
