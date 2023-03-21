@@ -51,6 +51,7 @@ public class ThreadRecepteur extends Thread
                     }
 
                     if (message.trim().equals("DEL"))
+                    {
                     
                         this.server.delete();
                     }
