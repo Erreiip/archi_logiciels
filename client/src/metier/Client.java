@@ -47,14 +47,19 @@ public class Client
     }
 
 
-    public void send( String shape )
+    public void send( String msg )
     {
         try{
-            DatagramPacket dp = new DatagramPacket(shape.getBytes(), shape.length(), this.mcast, PORT);
+            DatagramPacket dp = new DatagramPacket(msg.getBytes(), msg.length(), this.mcast, PORT);
 
             this.ms.send(dp);
         }catch(Exception e) { e.printStackTrace(); }
         
+    }
+
+    public void delete()
+    {
+        this.send("DEL");
     }
 
     public void send(IDessin forme)
