@@ -2,6 +2,7 @@ package server;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import server.src.Controleur;
 import server.src.Serveur;
 
 public class Main {
@@ -10,7 +11,7 @@ public class Main {
         FlatLightLaf.setup();
 
         try{
-            new Serveur();
+            new Controleur();
         } catch(Exception e) { e.printStackTrace(); }
     }
     

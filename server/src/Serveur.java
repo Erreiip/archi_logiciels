@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import client.src.commons.IDessin;
 
-import java.awt.Shape;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
@@ -27,8 +26,12 @@ public class Serveur
 
     ArrayList<IDessin> tableau;
 
-    public Serveur() throws Exception
+    private Controleur ctrl;
+
+    public Serveur(Controleur ctrl) throws Exception
     {
+        this.ctrl = ctrl;
+
         this.tableau  = new ArrayList<IDessin>();
 
         ms = new MulticastSocket(Serveur.PORT);
@@ -79,6 +82,8 @@ public class Serveur
         dp = new DatagramPacket(byteArray,byteArray.length, mcast,2009);
 
         ms.send(dp);
+
+        this.ctrl.maj();
     }
 
     public MulticastSocket getMultiCastSocket()
@@ -89,6 +94,10 @@ public class Serveur
     public InetAddress getInetAddress()
     {
         return this.mcast;
+    }
+
+    public ArrayList<IDessin> getAlShape() {
+        return this.tableau;
     }
     
 }
