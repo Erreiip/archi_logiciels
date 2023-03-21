@@ -36,11 +36,8 @@ public class ThreadClientRecepteur extends Thread
 
                 String message = new String(dp.getData());
 
-                System.out.println(message);
-
                 if ( this.estEntier(message) )
                 {
-                    System.out.println(this.getClass().getSimpleName() + ": en attente 2");
 
                     int taille = Integer.parseInt(message.trim());
 
@@ -53,8 +50,6 @@ public class ThreadClientRecepteur extends Thread
                     ObjectInputStream objectStream = new ObjectInputStream(byteStream);
 
                     ArrayList<IDessin> alFormes = (ArrayList<IDessin>) objectStream.readObject();
-
-                    System.out.println("RECU : " + alFormes.size()); //SOP
 
                     client.maj( alFormes );
                 }
