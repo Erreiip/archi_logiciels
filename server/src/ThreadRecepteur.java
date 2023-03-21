@@ -1,8 +1,6 @@
 package server.src;
 
 import java.awt.Color;
-import java.awt.Shape;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 

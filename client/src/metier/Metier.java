@@ -75,8 +75,6 @@ public class Metier
 
     public void delete()
     {
-        this.client.delete();
-        this.alShape.remove(this.alShape.size() - 1);
-        
+        this.client.delete();   
     }
 }

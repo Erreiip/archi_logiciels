@@ -70,14 +70,13 @@ public class PanelDessin extends JPanel {
                 if(forme.getRemplissage())
                     g2d.fill((Shape) forme);
             }
-        }
-
-        
+        }        
     }
 
     public void send()
     {
         this.ctrl.send(this.shapeCreation);
+        this.shapeCreation = null;
     }
 
     public void maj(ArrayList<IDessin> alFormes)
