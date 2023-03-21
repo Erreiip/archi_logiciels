@@ -69,6 +69,7 @@ public class Controleur {
 
     public void maj(ArrayList<IDessin> alFormes)
     {
-        ((FrameDessin) this.ihm).maj(alFormes);
+        this.metier.maj(alFormes);
+        ((FrameDessin)this.ihm).maj();
     }
 }

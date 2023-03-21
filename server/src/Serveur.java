@@ -29,12 +29,23 @@ public class Serveur
 
     public Serveur() throws Exception
     {
-        ms = new MulticastSocket();
+        this.tableau  = new ArrayList<IDessin>();
 
-        mcast = InetAddress.getByName(IP_MCAST);
+        ms = new MulticastSocket(Serveur.PORT);
+
+        mcast = InetAddress.getByName(Serveur.IP_MCAST);
+
+        this.ms.joinGroup(this.mcast);
 
         ThreadRecepteur tr = new ThreadRecepteur(this, ms);
         tr.start();
+    }
+
+    public void send(IDessin forme) 
+    {
+        this.tableau.add(forme);
+
+        try{ this.send(); } catch (Exception e) { e.printStackTrace(); }
     }
 
     public void send() throws Exception
