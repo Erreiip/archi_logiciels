@@ -67,10 +67,7 @@ public class PanelDessin extends JPanel {
             }
             else if (forme instanceof Shape) {
                 g2d.draw((Shape) forme);
-            }
-
-            if (((IDessin) forme).getRemplissage()) {
-                if (forme instanceof Shape)
+                if(forme.getRemplissage())
                     g2d.fill((Shape) forme);
             }
         }
@@ -167,7 +164,6 @@ public class PanelDessin extends JPanel {
             if ( PanelDessin.this.ctrl.getActionCourante() != "Effacer") {
                 PanelDessin.this.bCreation = true;
                 PanelDessin.this.shapeCreation = getShape(e.getPoint());
-                PanelDessin.this.ctrl.ajouterForme(PanelDessin.this.shapeCreation);
             }
         }
 
