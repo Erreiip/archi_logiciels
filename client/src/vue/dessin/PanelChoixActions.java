@@ -46,10 +46,13 @@ public class PanelChoixActions extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        for(int i = 0; i < this.actions.length; i++){
+        for(int i = 0; i < this.actions.length-1; i++){
             if(e.getSource() == this.boutonsActions[i]){
                 this.ctrl.setActionCourante(this.actions[i]);
             }
+        }
+        if(e.getSource() == this.boutonsActions[this.actions.length-1]){
+            this.ctrl.delete();
         }
     }
 }
