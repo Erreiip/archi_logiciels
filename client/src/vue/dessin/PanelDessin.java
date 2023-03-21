@@ -47,6 +47,8 @@ public class PanelDessin extends JPanel {
 
         ArrayList<IDessin> alFormes = this.ctrl.getAlShape();
 
+        if ( this.shapeCreation != null && !alFormes.contains(this.shapeCreation)) alFormes.add(this.shapeCreation);
+
         for (IDessin forme : alFormes) {
             Graphics2D g2d = (Graphics2D) g;
 
