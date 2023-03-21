@@ -119,7 +119,7 @@ public class ThreadRecepteur extends Thread
         }
 
         if (nomClasse.equals(MaLigne.class.getSimpleName())) {
-            shape = new MaLigne(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
+            shape = new MaLigne(w, x, h, y, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
         }
 
         if (nomClasse.equals(MonTexte.class.getSimpleName())) {

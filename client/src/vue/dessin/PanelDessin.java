@@ -72,6 +72,8 @@ public class PanelDessin extends JPanel {
                     g2d.fill((Shape) forme);
             }
         }
+
+        
     }
 
     public void send()

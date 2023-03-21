@@ -11,6 +11,7 @@ import client.src.commons.IDessin;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 
 
 public class Client 
@@ -66,10 +67,22 @@ public class Client
 
         Shape shape = (Shape) forme;
         Color couleurForme = forme.getCouleur();
-        String envoie = forme.getClass().getSimpleName() + ";x:" + shape.getBounds2D().getX() +
-                ";y:" + shape.getBounds2D().getY() + ";w:" + shape.getBounds2D().getWidth() +
-                ";h:" + shape.getBounds2D().getHeight() + ";r:" + forme.getRemplissage() +
-                ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        String envoie = "";
+        if ( shape instanceof Line2D)
+        {
+            Line2D ligne = (Line2D) shape;
+            envoie = forme.getClass().getSimpleName() + ";x:" + ligne.getY1() +
+            ";y:" + ligne.getY2() + ";w:" + ligne.getX1() +
+            ";h:" + ligne.getX2() + ";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        } else 
+        {
+            envoie = forme.getClass().getSimpleName() + ";x:" + shape.getBounds2D().getX() +
+            ";y:" + shape.getBounds2D().getY() + ";w:" + shape.getBounds2D().getWidth() +
+            ";h:" + shape.getBounds2D().getHeight() + ";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        }
+       
 
        this.send(envoie);
     }
