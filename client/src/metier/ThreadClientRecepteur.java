@@ -30,8 +30,6 @@ public class ThreadClientRecepteur extends Thread
             try {
                 DatagramPacket dp = new DatagramPacket(new byte[512], 512);
 
-                System.out.println(this.getClass().getSimpleName() + ": en attente");
-
                 this.ms.receive(dp);
 
                 String message = new String(dp.getData());

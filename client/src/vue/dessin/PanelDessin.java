@@ -75,8 +75,11 @@ public class PanelDessin extends JPanel {
 
     public void send()
     {
-        this.ctrl.send(this.shapeCreation);
-        this.shapeCreation = null;
+        if ( shapeCreation != null )
+        {
+            this.ctrl.send(this.shapeCreation);
+            this.shapeCreation = null;
+        }
     }
 
     public void maj(ArrayList<IDessin> alFormes)
@@ -110,8 +113,6 @@ public class PanelDessin extends JPanel {
                 texte.setCouleur(this.ctrl.getCouleurCourante());
                 texte.setRemplissage(this.ctrl.getCBremplissage());
                 texte.setEpaisseur(this.ctrl.getEpaisseur());
-                this.shapeCreation = texte;
-                this.send();
                 this.repaint();
                 return texte;
             default: 
@@ -162,7 +163,12 @@ public class PanelDessin extends JPanel {
 
         public void mousePressed(MouseEvent e) {
             PanelDessin.this.pntDebut = e.getPoint();
-            if ( PanelDessin.this.ctrl.getActionCourante() != "Effacer") {
+            if ( PanelDessin.this.ctrl.getActionCourante().equals("Texte")) {
+                PanelDessin.this.shapeCreation = getShape(e.getPoint());
+                PanelDessin.this.send();
+                return;
+            } 
+            if ( !PanelDessin.this.ctrl.getActionCourante().equals("Effacer")) {
                 PanelDessin.this.bCreation = true;
                 PanelDessin.this.shapeCreation = getShape(e.getPoint());
             }
