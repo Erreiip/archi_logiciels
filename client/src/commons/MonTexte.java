@@ -1,8 +1,9 @@
 package client.src.commons;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class MonTexte implements IDessin {
+public class MonTexte implements IDessin, Serializable{
     
     private String  texte;
     private Double  x;

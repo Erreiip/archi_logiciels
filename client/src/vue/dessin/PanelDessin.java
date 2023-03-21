@@ -110,6 +110,8 @@ public class PanelDessin extends JPanel {
                 texte.setCouleur(this.ctrl.getCouleurCourante());
                 texte.setRemplissage(this.ctrl.getCBremplissage());
                 texte.setEpaisseur(this.ctrl.getEpaisseur());
+                this.shapeCreation = texte;
+                this.send();
                 this.repaint();
                 return texte;
             default: 

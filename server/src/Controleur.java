@@ -11,8 +11,8 @@ public class Controleur {
 
     public Controleur() throws Exception
     {
-        this.ihm = new FramePrincipale(this);
         this.serv = new Serveur(this);
+        this.ihm = new FramePrincipale(this);
     }
 
     public ArrayList<IDessin>  getAlShape() {

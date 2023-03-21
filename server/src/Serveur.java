@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 
 public class Serveur 
 {
-    public static String IP_MCAST = "225.1.1.1";
+    public static String IP_MCAST = "225.4.3.1";
     public static int PORT = 2009;
 
 
