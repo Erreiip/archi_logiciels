@@ -30,17 +30,12 @@ public class ThreadClientRecepteur extends Thread
             try {
                 DatagramPacket dp = new DatagramPacket(new byte[512], 512);
 
-                System.out.println(this.getClass().getSimpleName() + ": en attente");
-
                 this.ms.receive(dp);
 
                 String message = new String(dp.getData());
 
-                System.out.println(message);
-
                 if ( this.estEntier(message) )
                 {
-                    System.out.println(this.getClass().getSimpleName() + ": en attente 2");
 
                     int taille = Integer.parseInt(message.trim());
 
@@ -53,8 +48,6 @@ public class ThreadClientRecepteur extends Thread
                     ObjectInputStream objectStream = new ObjectInputStream(byteStream);
 
                     ArrayList<IDessin> alFormes = (ArrayList<IDessin>) objectStream.readObject();
-
-                    System.out.println("RECU : " + alFormes.size()); //SOP
 
                     client.maj( alFormes );
                 }
