@@ -65,12 +65,22 @@ public class PanelDessin extends JPanel {
             }
             else if (forme instanceof Shape) {
                 g2d.draw((Shape) forme);
-            }
-
-            if (((IDessin) forme).getRemplissage()) {
-                if (forme instanceof Shape)
+                if(forme.getRemplissage())
                     g2d.fill((Shape) forme);
             }
+        }
+
+        if (shapeCreation instanceof MonTexte) {
+            if (shapeCreation.getRemplissage()) {
+                g2d.setFont(new Font("TimesRoman", Font.BOLD, 11 + shapeCreation.getEpaisseur()));
+            } else {
+                g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + shapeCreation.getEpaisseur()));
+            }
+        }
+        else if (shapeCreation instanceof Shape) {
+            g2d.draw((Shape) shapeCreation);
+            if (shapeCreation.getRemplissage())
+                g2d.fill((Shape) shapeCreation);
         }
     }
 
@@ -163,7 +173,6 @@ public class PanelDessin extends JPanel {
             if ( PanelDessin.this.ctrl.getActionCourante() != "Effacer") {
                 PanelDessin.this.bCreation = true;
                 PanelDessin.this.shapeCreation = getShape(e.getPoint());
-                PanelDessin.this.ctrl.ajouterForme(PanelDessin.this.shapeCreation);
             }
         }
 

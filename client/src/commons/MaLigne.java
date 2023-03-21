@@ -9,12 +9,12 @@ public class MaLigne extends Line2D.Double implements IDessin{
     private boolean bRemplissage;
     private int     epaisseur;
     
-    public MaLigne(double x, double y, double width, double height) {
-        this(x, y, width, height, null, false, 0);
+    public MaLigne(double x1, double y1, double x2, double y2) {
+        this(x1, y1, x2, y2, null, false, 0);
     }
 
-    public MaLigne(double x, double y, double width, double height, Color couleur, boolean bRemplissage, int epaisseur) {
-        super(x, y, width, height);
+    public MaLigne(double x1, double y1, double x2, double y2, Color couleur, boolean bRemplissage, int epaisseur) {
+        super(x1, y1, x2, y2);
 
         this.couleur = couleur;
         this.bRemplissage = bRemplissage;
