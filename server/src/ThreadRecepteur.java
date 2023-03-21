@@ -38,18 +38,27 @@ public class ThreadRecepteur extends Thread
 
                 ms.receive(dp);
 
-                System.out.println(new String(dp.getData()));
+                IDessin shape = traiter(new String(dp.getData()));
 
-                traiter(new String(dp.getData()));
+                if ( shape != null ) {
+                    this.server.send(shape);
+                } else {
+                    String message = new String(dp.getData());
+                    if (message.trim().equals("JVL"))
+                    {
+                        System.out.println("envoie");
+                        this.server.send();
+                    }
+                }
 
             } catch(Exception e) { e.printStackTrace(); }
         }
         
     }
 
-    public void traiter(String s) 
+    public IDessin traiter(String s) 
     {
-        if ( s.charAt(0) != 'M') return;
+        if ( s.charAt(0) != 'M') return null;
 
         String[] tabInfos = s.split(";");
 
@@ -117,8 +126,6 @@ public class ThreadRecepteur extends Thread
             // faut faire une conditipon spéciale au début shape = new MonTexte(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
         }
 
-        if ( shape != null ) {
-            this.server.send(shape);
-        }
+        return shape;
     }
 }

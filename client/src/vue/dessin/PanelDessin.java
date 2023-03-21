@@ -36,6 +36,9 @@ public class PanelDessin extends JPanel {
         this.addMouseMotionListener(gms);
 
         this.setLayout(null);
+
+        this.ctrl.send(null);
+        this.repaint();
     }
 
 

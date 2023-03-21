@@ -42,12 +42,6 @@ public class Client
 
             ThreadClientRecepteur tcr = new ThreadClientRecepteur(this, ms);
             tcr.start();
-
-            String messageInit = "Je veux la liste";
-
-            DatagramPacket dp = new DatagramPacket(messageInit.getBytes(), messageInit.length(), this.mcast, PORT);
-
-            this.ms.send(dp);
         }catch(Exception e) { e.printStackTrace(); }
     }
 
@@ -64,6 +58,12 @@ public class Client
 
     public void send(IDessin forme)
     {
+        if ( forme == null ) 
+        {
+            this.send("JVL");
+            return;
+        }
+
         Shape shape = (Shape) forme;
         Color couleurForme = forme.getCouleur();
         String envoie = forme.getClass().getSimpleName() + ";x:" + shape.getBounds2D().getX() +
