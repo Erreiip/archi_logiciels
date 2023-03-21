@@ -41,6 +41,16 @@ public class Serveur
         tr.start();
     }
 
+    public void delete()
+    {
+        if ( this.tableau.size() > 0)
+        {
+            this.tableau.remove(this.tableau.size()-1);
+            
+            try{ this.send(); } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
     public void send(IDessin forme) 
     {
         this.tableau.add(forme);

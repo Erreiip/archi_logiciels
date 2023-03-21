@@ -44,10 +44,16 @@ public class ThreadRecepteur extends Thread
                     this.server.send(shape);
                 } else {
                     String message = new String(dp.getData());
+                    
                     if (message.trim().equals("JVL"))
                     {
-                        System.out.println("envoie");
                         this.server.send();
+                    }
+
+                    if (message.trim().equals("DEL"))
+                    {
+                    
+                        this.server.delete();
                     }
                 }
 
