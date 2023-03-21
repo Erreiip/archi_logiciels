@@ -19,7 +19,6 @@ public class FrameDessin extends JFrame {
         this.ctrl = ctrl;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
@@ -31,6 +30,8 @@ public class FrameDessin extends JFrame {
         this.add(this.panelHaut, BorderLayout.NORTH);
         this.add(this.panelDessin, BorderLayout.CENTER);
         this.add(this.panelBas, BorderLayout.SOUTH);
+
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         this.setVisible(true);
     }
 
