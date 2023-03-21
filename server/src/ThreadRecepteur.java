@@ -34,7 +34,7 @@ public class ThreadRecepteur extends Thread
 
                 ms.receive(dp);
 
-                IDessin shape = traiter(new String(dp.getData()));
+                IDessin shape = ThreadRecepteur.traiter(new String(dp.getData()));
 
                 if ( shape != null ) {
                     this.server.send(shape);
@@ -58,7 +58,7 @@ public class ThreadRecepteur extends Thread
         
     }
 
-    public IDessin traiter(String s) 
+    public static IDessin traiter(String s) 
     {
         if ( s.charAt(0) != 'M') return null;
 
