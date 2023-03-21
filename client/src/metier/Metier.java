@@ -67,4 +67,9 @@ public class Metier
     {
         this.client.send(forme);
     }  
+
+    public void maj(ArrayList<IDessin> alFormes) 
+    {
+        this.alShape = alFormes;
+    }
 }

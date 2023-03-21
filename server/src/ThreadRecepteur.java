@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 
+import client.src.commons.IDessin;
 import client.src.commons.MaLigne;
 import client.src.commons.MonEllipse;
 import client.src.commons.MonRectangle;
@@ -33,6 +34,8 @@ public class ThreadRecepteur extends Thread
             {
                 DatagramPacket dp = new DatagramPacket(new byte[512], 512);
 
+                System.out.println(this.getClass().getSimpleName() + ": en attente");
+
                 ms.receive(dp);
 
                 System.out.println(new String(dp.getData()));
@@ -46,7 +49,7 @@ public class ThreadRecepteur extends Thread
 
     public void traiter(String s) 
     {
-        System.out.println(s);
+        if ( s.charAt(0) != 'M') return;
 
         String[] tabInfos = s.split(";");
 
@@ -60,7 +63,7 @@ public class ThreadRecepteur extends Thread
         Integer couleur = null;
 
                 
-        for (int cpt = 1; cpt < tabInfos.length; cpt++) {
+        for (int cpt = 1; cpt < tabInfos.length - 1; cpt++) {
             String[] split = tabInfos[cpt].split(":");
 
             String type = split[0];
@@ -96,7 +99,7 @@ public class ThreadRecepteur extends Thread
         }
         
 
-        Shape shape = null;
+        IDessin shape = null;
 
         if (nomClasse.equals(MonEllipse.class.getSimpleName())) {
             shape = new MonEllipse(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
@@ -114,7 +117,8 @@ public class ThreadRecepteur extends Thread
             // faut faire une conditipon spéciale au début shape = new MonTexte(x, y, w, h, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
         }
 
-        System.out.println(shape); //SOP
-
+        if ( shape != null ) {
+            this.server.send(shape);
+        }
     }
 }

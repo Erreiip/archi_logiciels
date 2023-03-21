@@ -42,8 +42,8 @@ public class FrameDessin extends JFrame {
         return this.panelHaut.getEpaisseur();
     }
 
-    public void maj(ArrayList<IDessin> alFormes)
+    public void maj()
     {
-        this.panelDessin.maj(alFormes);
+        this.panelDessin.repaint();
     }
 }
