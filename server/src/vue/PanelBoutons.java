@@ -1,9 +1,21 @@
 package server.src.vue;
 
 import server.src.Controleur;
+import server.src.ThreadRecepteur;
+
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class PanelBoutons extends JPanel implements ActionListener{
     
@@ -37,16 +49,55 @@ public class PanelBoutons extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.btnClear) {
-            this.ctrl.clearLogs();
+            this.ctrl.clear();
         }
         else if (e.getSource() == this.btnStop) {
             System.out.println("Stop le serveur");
         }
         else if (e.getSource() == this.btnSauvegarder) {
             System.out.println("Sauvegarder");
+
+            String filePath = JOptionPane.showInputDialog("Entrez le nom du fichier : ");
+
+            try{
+                File file = new File(filePath);
+                ByteArrayOutputStream convert = new ByteArrayOutputStream();
+
+                byte[] bytes = convert.toByteArray();
+
+                if(!file.exists()){
+                    file.createNewFile();
+
+                    OutputStreamWriter ow = new FileWriter(file.getAbsoluteFile(), StandardCharsets.UTF_8);
+			        BufferedWriter bw = new BufferedWriter(ow);
+                }
+
+			} catch(Exception error){error.printStackTrace();}
         }
         else if (e.getSource() == this.btnOuvrir) {
             System.out.println("Ouvrir");
+
+            try{
+				JFileChooser chooser = new JFileChooser(".");
+                
+                FileFilter filtre = new FileNameExtensionFilter("TABLEAU (*.tableau)", "tableau");
+                chooser.setFileFilter(filtre);
+                chooser.setAcceptAllFileFilterUsed(false);
+				
+				int res = chooser.showOpenDialog(this);
+				if (res == JFileChooser.APPROVE_OPTION)
+                {
+                    Scanner sc = new Scanner(chooser.getSelectedFile());
+                    while (sc.hasNextLine())
+                    {
+                        String line = sc.nextLine();
+                        this.ctrl.ajouterForme(ThreadRecepteur.traiter(line));
+                    }
+                }
+
+            }catch(Exception error){error.printStackTrace();}
+            
+            this.ctrl.send();
         }
     }
 }

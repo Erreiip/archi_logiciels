@@ -23,8 +23,18 @@ public class Controleur {
         this.ihm.maj();
     }
 
-    public void clearLogs() {
+    public void clear() {
         this.ihm.clearLogs();
+        this.serv.clear();
     }
     
+    public void ajouterForme(IDessin s) {
+        this.serv.ajouterForme(s);
+    }
+
+    public void send() {
+        try {
+            this.serv.send();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }

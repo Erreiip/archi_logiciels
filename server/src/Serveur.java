@@ -99,5 +99,15 @@ public class Serveur
     public ArrayList<IDessin> getAlShape() {
         return this.tableau;
     }
-    
+
+    public void ajouterForme(IDessin s) {
+        this.tableau.add(s);
+    }
+
+    public void clear() {
+        this.tableau.clear();
+        try {
+            this.send();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }
