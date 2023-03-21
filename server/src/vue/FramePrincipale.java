@@ -13,6 +13,7 @@ public class FramePrincipale extends JFrame
 
     private PanelLogs pnlLogs;
     private PanelDessin pnlDessin;
+    private PanelBoutons pnlBoutons;
     
     public FramePrincipale(Controleur ctrl)
     {
@@ -22,10 +23,11 @@ public class FramePrincipale extends JFrame
 
         this.pnlLogs = new PanelLogs(this.ctrl);
         this.pnlDessin = new PanelDessin(this.ctrl);
-
+        this.pnlBoutons = new PanelBoutons(this.ctrl);
 
         this.add( this.pnlLogs, BorderLayout.NORTH);
         this.add( this.pnlDessin, BorderLayout.CENTER);
+        this.add( this.pnlBoutons, BorderLayout.SOUTH);
 
 
         this.setLocationRelativeTo(null);
@@ -37,5 +39,9 @@ public class FramePrincipale extends JFrame
 
     public void maj() {
         this.pnlDessin.repaint();
+    }
+
+    public void clearLogs() {
+        this.pnlLogs.clearLogs();
     }
 }

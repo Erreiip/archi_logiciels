@@ -23,6 +23,8 @@ public class Controleur {
         this.ihm.maj();
     }
 
-    
+    public void clearLogs() {
+        this.ihm.clearLogs();
+    }
     
 }
