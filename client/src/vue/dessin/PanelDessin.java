@@ -122,24 +122,8 @@ public class PanelDessin extends JPanel {
 
     public void setPointFin(Point pntFin) {
         if (PanelDessin.this.shapeCreation instanceof MonEllipse ) {
-            Double diametre = Math.min(Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
-
-            if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY()) {
-                ((MonEllipse) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
-                return;
-            }
-            else if (pntFin.getX() < this.pntDebut.getX()) {
-                ((MonEllipse) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
-                return;
-            }
-            else if (pntFin.getY() < this.pntDebut.getY()) {
-                ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
-                return;
-            }
-            else {
-                ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
-                return;
-            }      
+            Double diametre = Math.max(Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));            
+            ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX()-diametre/2, this.pntDebut.getY()-diametre/2, diametre*1.5, diametre*1.5);
         }
 
         if (PanelDessin.this.shapeCreation instanceof MonRectangle ) {
