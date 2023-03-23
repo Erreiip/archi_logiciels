@@ -16,7 +16,7 @@ public class PanelChoixActions extends JPanel implements ActionListener {
     public PanelChoixActions(Controleur ctrl) {
         this.ctrl = ctrl;
         
-        this.actions = new String[]{"Cercle", "Rectangle", "Ligne", "Texte", "Effacer"};
+        this.actions = new String[]{"Cercle","Oval", "Carre", "Rectangle", "Ligne", "Trace", "Texte", "Effacer"};
         this.boutonsActions = new JButton[this.actions.length];
         this.setLayout(new GridLayout(1, this.actions.length, 5, 5));
 

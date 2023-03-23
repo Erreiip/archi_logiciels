@@ -9,6 +9,7 @@ import client.src.commons.MaLigne;
 import client.src.commons.MonEllipse;
 import client.src.commons.MonRectangle;
 import client.src.commons.MonTexte;
+import client.src.commons.MonTrace;
 
 public class ThreadRecepteur extends Thread
 {
@@ -163,6 +164,11 @@ public class ThreadRecepteur extends Thread
 
         if (nomClasse.equals(MonTexte.class.getSimpleName())) {
             shape = new MonTexte(text, x, y, new Color(couleur), Boolean.parseBoolean(remplissage), epaisseur);
+        }
+
+        if (nomClasse.equals(MonTrace.class.getSimpleName())) {
+            shape = new MonTrace();
+            // Je te laisse t'en occuper
         }
 
         return shape;

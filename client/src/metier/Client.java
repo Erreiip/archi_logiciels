@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import client.src.Controleur;
 import client.src.commons.IDessin;
 import client.src.commons.MonTexte;
+import client.src.commons.MonTrace;
 
 import java.awt.Color;
 import java.awt.Shape;
@@ -87,6 +88,15 @@ public class Client
             envoie =  forme.getClass().getSimpleName() + ";x:" + text.getX() +
             ";y:" + text.getY() + ";t:" + text.getTexte() +";r:" + forme.getRemplissage() +
             ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        } else if ( forme instanceof MonTrace)
+        {
+            envoie = forme.getClass().getSimpleName() + ";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+            MonTrace trace = (MonTrace) forme;
+            for ( int i = 0; i < trace.getAlPoint().size(); i++) {
+                envoie += trace.getAlPoint().get(i).getX() + ":" + trace.getAlPoint().get(i).getY() + ";";
+            }
+            // J'ai commencé ça mais je te laisse finir
         } else 
         {
             Shape shape = (Shape) forme;

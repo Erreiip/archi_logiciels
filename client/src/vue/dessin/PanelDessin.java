@@ -6,6 +6,7 @@ import client.src.commons.MaLigne;
 import client.src.commons.MonEllipse;
 import client.src.commons.MonRectangle;
 import client.src.commons.MonTexte;
+import client.src.commons.MonTrace;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -65,6 +66,14 @@ public class PanelDessin extends JPanel {
                 g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
                         (int) Math.round(((MonTexte) forme).getY()));
             }
+            else if (forme instanceof MonTrace) {
+                for(int i = 0; i < ((MonTrace) forme).getAlPoint().size() - 1; i++) {
+                    g2d.drawLine((int) Math.round(((MonTrace) forme).getAlPoint().get(i).getX()),
+                            (int) Math.round(((MonTrace) forme).getAlPoint().get(i).getY()),
+                            (int) Math.round(((MonTrace) forme).getAlPoint().get(i + 1).getX()),
+                            (int) Math.round(((MonTrace) forme).getAlPoint().get(i + 1).getY()));
+                }
+            }
             else if (forme instanceof Shape) {
                 g2d.draw((Shape) forme);
                 if(forme.getRemplissage())
@@ -90,11 +99,23 @@ public class PanelDessin extends JPanel {
     public IDessin getShape(Point pntFin) {
         switch (this.ctrl.getActionCourante()) {
             case "Cercle":
+                MonEllipse cercle = (MonEllipse) new MonEllipse(this.pntDebut.getX(), this.pntDebut.getY(), 0, 0);
+                cercle.setCouleur(this.ctrl.getCouleurCourante());
+                cercle.setRemplissage(this.ctrl.getCBremplissage());
+                cercle.setEpaisseur(this.ctrl.getEpaisseur());
+                return cercle;
+            case "Oval":
                 MonEllipse oval = (MonEllipse) new MonEllipse(this.pntDebut.getX(), this.pntDebut.getY(), 0, 0);
                 oval.setCouleur(this.ctrl.getCouleurCourante());
                 oval.setRemplissage(this.ctrl.getCBremplissage());
                 oval.setEpaisseur(this.ctrl.getEpaisseur());
                 return oval;
+            case "Carre":
+                MonRectangle carre = (MonRectangle) new MonRectangle(this.pntDebut.getX(), this.pntDebut.getY(), 0, 0);
+                carre.setCouleur(this.ctrl.getCouleurCourante());
+                carre.setRemplissage(this.ctrl.getCBremplissage());
+                carre.setEpaisseur(this.ctrl.getEpaisseur());
+                return carre;
             case "Rectangle":
                 MonRectangle rectangle = (MonRectangle) new MonRectangle(this.pntDebut.getX(), this.pntDebut.getY(), 0, 0);
                 rectangle.setCouleur(this.ctrl.getCouleurCourante());
@@ -115,18 +136,33 @@ public class PanelDessin extends JPanel {
                 texte.setEpaisseur(this.ctrl.getEpaisseur());
                 this.repaint();
                 return texte;
-            default: 
+            case "Trace" :
+                MonTrace trace = new MonTrace();
+                trace.setCouleur(this.ctrl.getCouleurCourante());
+                trace.setRemplissage(this.ctrl.getCBremplissage());
+                trace.setEpaisseur(this.ctrl.getEpaisseur());
+                return trace;
+            default:
                 return null;
         }
     }
 
     public void setPointFin(Point pntFin) {
-        if (PanelDessin.this.shapeCreation instanceof MonEllipse ) {
+        if (PanelDessin.this.shapeCreation instanceof MonEllipse && this.ctrl.getActionCourante().equals("Cercle")) {
             Double diametre = Math.max(Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));            
             ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX()-diametre/2, this.pntDebut.getY()-diametre/2, diametre*1.5, diametre*1.5);
         }
-
-        if (PanelDessin.this.shapeCreation instanceof MonRectangle ) {
+        if (PanelDessin.this.shapeCreation instanceof MonEllipse && this.ctrl.getActionCourante().equals("Oval")) {
+            if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY())
+                ((MonEllipse) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+            else if (pntFin.getX() < this.pntDebut.getX())
+                ((MonEllipse) this.shapeCreation ).setFrame(pntFin.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+            else if (pntFin.getY() < this.pntDebut.getY())
+                ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+            else
+                ((MonEllipse) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
+        }
+        if (PanelDessin.this.shapeCreation instanceof MonRectangle && this.ctrl.getActionCourante().equals("Rectangle")) {
             if (pntFin.getX() < this.pntDebut.getX() && pntFin.getY() < this.pntDebut.getY())
                 ((MonRectangle) this.shapeCreation ).setFrame(pntFin.getX(), pntFin.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
             else if (pntFin.getX() < this.pntDebut.getX())
@@ -137,9 +173,17 @@ public class PanelDessin extends JPanel {
                 ((MonRectangle) this.shapeCreation ).setFrame(this.pntDebut.getX(), this.pntDebut.getY(), Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));
                 return;
         }
+        if (PanelDessin.this.shapeCreation instanceof MonRectangle && this.ctrl.getActionCourante().equals("Carre")) {
+            Double cote = Math.max(Math.abs(pntFin.getX()-this.pntDebut.getX()), Math.abs(pntFin.getY()-this.pntDebut.getY()));            
+            ((MonRectangle) this.shapeCreation ).setFrame(this.pntDebut.getX()-cote/2, this.pntDebut.getY()-cote/2, cote*1.5, cote*1.5);
+        }
         if (PanelDessin.this.shapeCreation instanceof MaLigne ) {
                 ((MaLigne) this.shapeCreation ).setLine(this.pntDebut.getX(), this.pntDebut.getY(), pntFin.getX(), pntFin.getY());
                 return;
+        }
+
+        if (PanelDessin.this.shapeCreation instanceof MonTrace) {
+            ((MonTrace) this.shapeCreation).addPoint(pntFin);
         }
     }
 
