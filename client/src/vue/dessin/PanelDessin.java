@@ -7,6 +7,8 @@ import client.src.commons.MonEllipse;
 import client.src.commons.MonRectangle;
 import client.src.commons.MonTexte;
 import client.src.commons.MonTrace;
+import client.src.commons.Mouse;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,13 +47,13 @@ public class PanelDessin extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
 
         ArrayList<IDessin> alFormes = this.ctrl.getAlShape();
 
         if ( this.shapeCreation != null && !alFormes.contains(this.shapeCreation)) alFormes.add(this.shapeCreation);
 
         for (IDessin forme : alFormes) {
-            Graphics2D g2d = (Graphics2D) g;
 
             g2d.setColor(((IDessin) forme).getCouleur());
 
@@ -66,7 +68,7 @@ public class PanelDessin extends JPanel {
                 g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
                         (int) Math.round(((MonTexte) forme).getY()));
             }
-            else if (forme instanceof MonTrace) {
+            else if (forme instanceof MonTrace) { // du caca, à changer
                 for(int i = 0; i < ((MonTrace) forme).getAlPoint().size() - 1; i++) {
                     g2d.drawLine((int) Math.round(((MonTrace) forme).getAlPoint().get(i).getX()),
                             (int) Math.round(((MonTrace) forme).getAlPoint().get(i).getY()),
@@ -79,7 +81,12 @@ public class PanelDessin extends JPanel {
                 if(forme.getRemplissage())
                     g2d.fill((Shape) forme);
             }
-        }        
+        }
+        
+        ArrayList<Mouse> alSouris = this.ctrl.getAlSouris();
+        for (Mouse m : alSouris){
+            g2d.draw(new MonRectangle(m.x, m.y, 10, 10));
+        }
     }
 
     public void send()
@@ -216,7 +223,7 @@ public class PanelDessin extends JPanel {
         }
 
         public void mouseMoved(MouseEvent e) {
-            if(PanelDessin.this.bCreation) {
+            if (PanelDessin.this.bCreation) {
                 PanelDessin.this.setPointFin(e.getPoint());
                 PanelDessin.this.repaint();
             }

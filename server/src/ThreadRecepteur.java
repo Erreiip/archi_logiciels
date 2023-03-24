@@ -61,7 +61,7 @@ public class ThreadRecepteur extends Thread
 
     public static IDessin traiter(String s) 
     {
-        if ( s.charAt(0) != 'M') return null;
+        if ( s.charAt(0) != 'M' && !s.contains("Mouse")) return null;
 
         String[] tabInfos = s.split(";");
 

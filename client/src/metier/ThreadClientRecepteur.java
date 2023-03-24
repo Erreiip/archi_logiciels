@@ -60,9 +60,9 @@ public class ThreadClientRecepteur extends Thread
                         Integer x   = null;
                         Integer y   = null;
 
-                        for ( String s : tabInfos )
+                        for (int cpt = 0; cpt < tabInfos.length - 1; cpt++ )
                         {
-                            String[] tabSplit = s.split(":");
+                            String[] tabSplit = tabInfos[cpt].split(":");
 
                             String key   = tabSplit[0];
                             String value = tabSplit[1];

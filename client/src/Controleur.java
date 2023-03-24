@@ -10,6 +10,7 @@ import client.src.metier.Metier;
 import client.src.vue.connection.FrameConnection;
 import client.src.vue.dessin.FrameDessin;
 import client.src.commons.IDessin;
+import client.src.commons.Mouse;
 
 public class Controleur {
     
@@ -28,6 +29,14 @@ public class Controleur {
         this.ihm.dispose();
         this.ihm = new FrameDessin(this);
     }
+
+    public ArrayList<IDessin> getAlShape() {
+        return this.metier.getAlShape();
+    }
+
+    public ArrayList<Mouse> getAlSouris() {
+        return this.metier.getMouse();
+    } 
 
     public String getActionCourante() {
         return this.metier.getActionCourante();
@@ -61,10 +70,6 @@ public class Controleur {
         this.metier.ajouterForme(s);
     }
 
-    public ArrayList<IDessin> getAlShape() {
-        return this.metier.getAlShape();
-    }
-
     public void send(IDessin forme)
     {
         this.metier.send(forme);
@@ -85,6 +90,7 @@ public class Controleur {
     }
 
     public void creerSouris(String nom, int x, int y) {
-        this.metier.creerSouris(nom,x,y);
+        this.metier.creerSouris(nom, x, y);
+        ((FrameDessin)this.ihm).maj();
     }
 }

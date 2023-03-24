@@ -27,7 +27,8 @@ public class Metier
     {
         this.ctrl = ctrl;
 
-        this.alShape = new ArrayList<IDessin>();
+        this.alShape  = new ArrayList<IDessin>();
+        this.alSouris = new ArrayList<Mouse>();
         this.nom = "guest";
 
         this.client = new Client(this.ctrl);
@@ -39,6 +40,10 @@ public class Metier
     public ArrayList<IDessin> getAlShape() {
         return this.alShape;
     }
+
+    public ArrayList<Mouse> getMouse() {
+        return this.alSouris;
+    } 
 
     public void ajouterForme(IDessin s) {
         this.alShape.add(s);
@@ -90,6 +95,16 @@ public class Metier
     }
 
     public void creerSouris(String nom, int x, int y) {
-        
+        for ( Mouse m : this.alSouris )
+        {
+            if (m.getNom().equals(nom)) {
+                m.x = x;
+                m.y = y;
+                return;
+            }
+        }
+
+        Mouse m = new Mouse(nom, x, y);
+        this.alSouris.add(m);
     }
 }

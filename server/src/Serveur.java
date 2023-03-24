@@ -81,7 +81,7 @@ public class Serveur
 
         //Thread.sleep(100);
 
-        dp = new DatagramPacket(byteArray,byteArray.length, mcast,2009);
+        dp = new DatagramPacket(byteArray,byteArray.length, mcast, Serveur.PORT);
 
         ms.send(dp);
 
