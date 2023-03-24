@@ -215,6 +215,8 @@ public class PanelDessin extends JPanel {
                 PanelDessin.this.setPointFin(e.getPoint());
                 PanelDessin.this.repaint();
             }
+
+            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY());
         }
 
         public void mouseMoved(MouseEvent e) {
