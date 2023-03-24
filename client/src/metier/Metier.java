@@ -95,6 +95,10 @@ public class Metier
     }
 
     public void creerSouris(String nom, int x, int y) {
+        
+        if (nom.equals(this.nom))
+            return;
+
         for ( Mouse m : this.alSouris )
         {
             if (m.getNom().equals(nom)) {

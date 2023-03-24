@@ -85,7 +85,7 @@ public class PanelDessin extends JPanel {
         
         ArrayList<Mouse> alSouris = this.ctrl.getAlSouris();
         for (Mouse m : alSouris){
-            g2d.drawImage(Mouse.getImage(), m.x, m.y, null);
+            g2d.drawImage(m.getImage(), m.x, m.y, null);
         }
     }
 
