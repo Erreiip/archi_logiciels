@@ -31,8 +31,9 @@ public class Mouse
 
     public Image getImage() {
         try{
-            BufferedImage bi = ImageIO.read(new File(
-                    "C:\\Users\\Pierre\\Documents\\iut\\s4\\r4.01_architect_logicielle\\archi_logiciels\\images\\cursor" + (this.curseurs + 1) + ".png"));
+            System.out.println(getClass().getResource("images" + (this.curseurs + 1) + ".png"));
+            System.out.println(getClass().getResource("../").getPath());
+            BufferedImage bi = ImageIO.read(new File("./images/cursor" + (this.curseurs + 1) + ".png"));
 
             return bi.getScaledInstance(20, 30, Image.SCALE_DEFAULT);
         } catch (Exception e) {
