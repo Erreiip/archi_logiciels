@@ -2,6 +2,7 @@ package commons;
 
 import java.awt.Color;
 import java.io.Serializable;
+import java.awt.*;
 
 public class MonTexte implements IDessin, Serializable{
     
@@ -71,5 +72,17 @@ public class MonTexte implements IDessin, Serializable{
 
     public void setEpaisseur(int epaisseur) {
         this.epaisseur = epaisseur;
+    }
+
+    public void draw(Graphics2D g2d) {
+        g2d.setColor(this.couleur);
+        g2d.setStroke(new BasicStroke(this.epaisseur));
+        if (this.getRemplissage()) {
+            g2d.setFont(new Font("TimesRoman", Font.BOLD, 11 + this.getEpaisseur()));
+        } else {
+            g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + this.getEpaisseur()));
+        }
+
+        g2d.drawString(this.getTexte(), (int) Math.round(this.getX()), (int) Math.round((this.getY())));
     }
 }

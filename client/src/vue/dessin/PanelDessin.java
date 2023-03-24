@@ -54,28 +54,7 @@ public class PanelDessin extends JPanel {
         if ( this.shapeCreation != null && !alFormes.contains(this.shapeCreation)) alFormes.add(this.shapeCreation);
 
         for (IDessin forme : alFormes) {
-
-            g2d.setColor(((IDessin) forme).getCouleur());
-
-            g2d.setStroke(new BasicStroke(((IDessin) forme).getEpaisseur()));
-            if (forme instanceof MonTexte) {
-                if (forme.getRemplissage()) {
-                    g2d.setFont(new Font("TimesRoman", Font.BOLD, 11 + forme.getEpaisseur()));
-                } else {
-                    g2d.setFont(new Font("TimesRoman", Font.PLAIN, 11 + forme.getEpaisseur()));
-                }
-
-                g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
-                        (int) Math.round(((MonTexte) forme).getY()));
-            }
-            else if (forme instanceof MonTrace) {
-                ((MonTrace) forme).draw(g2d);
-            }
-            else if (forme instanceof Shape) {
-                g2d.draw((Shape) forme);
-                if(forme.getRemplissage())
-                    g2d.fill((Shape) forme);
-            }
+            forme.draw(g2d);
         }
 
         AffineTransform old = g2d.getTransform();
