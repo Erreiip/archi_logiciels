@@ -39,7 +39,7 @@ public class FrameDessin extends JFrame {
 
         Toolkit tkit = Toolkit.getDefaultToolkit();
         try{
-            BufferedImage bi = ImageIO.read(new File("/home/etudiant/lp212835/TP/s4/r4.01_architect_logicielle/archi_logiciels/images/cursor0.png"));
+            BufferedImage bi = ImageIO.read(this.ctrl.getClass().getResource("../../images/cursor0.png"));
 
             Image img = bi.getScaledInstance(20, 30, Image.SCALE_DEFAULT);
 
