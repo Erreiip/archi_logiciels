@@ -68,7 +68,7 @@ public class PanelDessin extends JPanel {
                 g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
                         (int) Math.round(((MonTexte) forme).getY()));
             }
-            else if (forme instanceof MonTrace) { // du caca, à changer
+            else if (forme instanceof MonTrace) {
                 ((MonTrace) forme).draw(g2d);
             }
             else if (forme instanceof Shape) {
