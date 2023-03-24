@@ -195,6 +195,8 @@ public class PanelDessin extends JPanel {
             PanelDessin.this.bCreation = false;
             PanelDessin.this.send();
             PanelDessin.this.repaint();
+
+            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY(), false);
             
         }
 
