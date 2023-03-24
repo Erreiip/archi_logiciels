@@ -2,6 +2,8 @@ package commons;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 public class MonEllipse extends Ellipse2D.Double implements IDessin{
     
@@ -45,4 +47,12 @@ public class MonEllipse extends Ellipse2D.Double implements IDessin{
         this.epaisseur = epaisseur;
     }
 
+    public void draw(Graphics2D g2d) {
+        g2d.setColor(this.couleur);
+        g2d.setStroke(new BasicStroke(this.epaisseur));
+        if (this.bRemplissage)
+            g2d.fill(this);
+        else
+            g2d.draw(this);
+    }
 }
