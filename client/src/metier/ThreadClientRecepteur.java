@@ -4,7 +4,7 @@ import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
 
-import client.src.commons.IDessin;
+import commons.IDessin;
 
 import java.awt.Shape;
 import java.io.ByteArrayInputStream;

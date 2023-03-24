@@ -1,13 +1,13 @@
 package client.src.vue.dessin;
 
 import client.src.Controleur;
-import client.src.commons.IDessin;
-import client.src.commons.MaLigne;
-import client.src.commons.MonEllipse;
-import client.src.commons.MonRectangle;
-import client.src.commons.MonTexte;
-import client.src.commons.MonTrace;
-import client.src.commons.Mouse;
+import commons.IDessin;
+import commons.MaLigne;
+import commons.MonEllipse;
+import commons.MonRectangle;
+import commons.MonTexte;
+import commons.MonTrace;
+import commons.Mouse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,7 +85,7 @@ public class PanelDessin extends JPanel {
         
         ArrayList<Mouse> alSouris = this.ctrl.getAlSouris();
         for (Mouse m : alSouris){
-            g2d.draw(new MonRectangle(m.x, m.y, 10, 10));
+            g2d.drawImage(Mouse.getImage(), m.x, m.y, null);
         }
     }
 

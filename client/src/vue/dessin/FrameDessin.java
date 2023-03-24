@@ -1,7 +1,7 @@
 package client.src.vue.dessin;
 
 import client.src.Controleur;
-import client.src.commons.IDessin;
+import commons.IDessin;
 
 import javax.swing.*;
 import java.awt.*;

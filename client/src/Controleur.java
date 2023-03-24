@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import client.src.metier.Metier;
 import client.src.vue.connection.FrameConnection;
 import client.src.vue.dessin.FrameDessin;
-import client.src.commons.IDessin;
-import client.src.commons.Mouse;
+import commons.IDessin;
+import commons.Mouse;
 
 public class Controleur {
     

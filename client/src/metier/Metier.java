@@ -1,8 +1,8 @@
 package client.src.metier;
 
 import client.src.Controleur;
-import client.src.commons.IDessin;
-import client.src.commons.Mouse;
+import commons.IDessin;
+import commons.Mouse;
 
 import java.awt.Color;
 import java.awt.Shape;

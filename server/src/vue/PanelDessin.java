@@ -1,9 +1,12 @@
 package server.src.vue;
 
 import server.src.Controleur;
-import client.src.commons.IDessin;
-import client.src.commons.MonTexte;
+
 import javax.swing.*;
+
+import commons.IDessin;
+import commons.MonTexte;
+
 import java.awt.*;
 import java.util.ArrayList;
 

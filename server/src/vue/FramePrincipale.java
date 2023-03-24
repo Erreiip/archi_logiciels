@@ -3,7 +3,7 @@ package server.src.vue;
 import javax.swing.JFrame;
 import javax.swing.plaf.BorderUIResource;
 
-import client.src.commons.IDessin;
+import commons.IDessin;
 
 import java.awt.*;
 

@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.util.ArrayList;
 
-import client.src.commons.IDessin;
+import commons.IDessin;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;

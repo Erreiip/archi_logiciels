@@ -1,4 +1,4 @@
-package client.src.commons;
+package commons;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;

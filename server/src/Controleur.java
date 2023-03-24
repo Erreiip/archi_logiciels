@@ -2,7 +2,7 @@ package server.src;
 
 import java.util.ArrayList;
 
-import client.src.commons.IDessin;
+import commons.IDessin;
 import server.src.vue.FramePrincipale;
 
 public class Controleur {

@@ -1,4 +1,4 @@
-package client.src.commons;
+package commons;
 
 import java.awt.Color;
 import java.io.Serializable;

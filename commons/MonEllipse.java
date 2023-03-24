@@ -1,4 +1,4 @@
-package client.src.commons;
+package commons;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.Color;

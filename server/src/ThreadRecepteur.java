@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.net.DatagramPacket;
 import java.net.MulticastSocket;
 
-import client.src.commons.IDessin;
-import client.src.commons.MaLigne;
-import client.src.commons.MonEllipse;
-import client.src.commons.MonRectangle;
-import client.src.commons.MonTexte;
-import client.src.commons.MonTrace;
+import commons.IDessin;
+import commons.MaLigne;
+import commons.MonEllipse;
+import commons.MonRectangle;
+import commons.MonTexte;
+import commons.MonTrace;
 
 public class ThreadRecepteur extends Thread
 {

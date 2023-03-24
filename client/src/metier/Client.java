@@ -6,9 +6,9 @@ import java.net.MulticastSocket;
 import java.util.ArrayList;
 
 import client.src.Controleur;
-import client.src.commons.IDessin;
-import client.src.commons.MonTexte;
-import client.src.commons.MonTrace;
+import commons.IDessin;
+import commons.MonTexte;
+import commons.MonTrace;
 
 import java.awt.Color;
 import java.awt.Shape;
