@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.awt.Graphics2D;
 
 public class MonTrace implements IDessin, Serializable {
     
@@ -53,5 +54,14 @@ public class MonTrace implements IDessin, Serializable {
 
     public void setEpaisseur(int epaisseur) {
         this.epaisseur = epaisseur;
+    }
+
+    public void draw(Graphics2D g2d) {
+        for(int i = 0; i < this.alPoint.size() - 1; i++) {
+            g2d.drawLine((int) Math.round(this.alPoint.get(i).getX()),
+                         (int) Math.round(this.alPoint.get(i).getY()),
+                         (int) Math.round(this.alPoint.get(i + 1).getX()),
+                         (int) Math.round(this.alPoint.get(i + 1).getY()));
+        }
     }
 }

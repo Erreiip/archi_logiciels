@@ -68,13 +68,8 @@ public class PanelDessin extends JPanel {
                 g2d.drawString(((MonTexte) forme).getTexte(), (int) Math.round(((MonTexte) forme).getX()),
                         (int) Math.round(((MonTexte) forme).getY()));
             }
-            else if (forme instanceof MonTrace) { // du caca, à changer
-                for(int i = 0; i < ((MonTrace) forme).getAlPoint().size() - 1; i++) {
-                    g2d.drawLine((int) Math.round(((MonTrace) forme).getAlPoint().get(i).getX()),
-                            (int) Math.round(((MonTrace) forme).getAlPoint().get(i).getY()),
-                            (int) Math.round(((MonTrace) forme).getAlPoint().get(i + 1).getX()),
-                            (int) Math.round(((MonTrace) forme).getAlPoint().get(i + 1).getY()));
-                }
+            else if (forme instanceof MonTrace) {
+                ((MonTrace) forme).draw(g2d);
             }
             else if (forme instanceof Shape) {
                 g2d.draw((Shape) forme);
