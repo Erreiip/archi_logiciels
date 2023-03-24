@@ -110,16 +110,16 @@ public class Client
        this.send(envoie);
     }
 
-    public void sendMouse(int x, int y) {
+    public void sendMouse(int x, int y, boolean drag) {
         String envoie = "";
         
-        envoie = "Mouse:"+ this.ctrl.getNom() +";x:" + x + ";y:" + y + ";";
+        envoie = "Mouse:"+ this.ctrl.getNom() +";x:" + x + ";y:" + y + ";d:" + drag + ";" ;
 
         this.send(envoie);
     }
 
-    public void creerSouris(String nom, int x, int y) {
-        this.ctrl.creerSouris(nom,x,y);
+    public void creerSouris(String nom, int x, int y, boolean drag) {
+        this.ctrl.creerSouris(nom,x,y, drag);
     }
 
     public void maj(ArrayList<IDessin> alFormes)

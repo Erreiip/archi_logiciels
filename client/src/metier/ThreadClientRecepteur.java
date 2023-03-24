@@ -59,6 +59,7 @@ public class ThreadClientRecepteur extends Thread
                         String  nom = null;
                         Integer x   = null;
                         Integer y   = null;
+                        boolean drag = false;
 
                         for (int cpt = 0; cpt < tabInfos.length - 1; cpt++ )
                         {
@@ -78,9 +79,13 @@ public class ThreadClientRecepteur extends Thread
                             if ( key.equals("y")) {
                                 y = Integer.parseInt(value);
                             }
+
+                            if ( key.equals("d")) {
+                                drag = Boolean.parseBoolean(value);
+                            }
                         }
 
-                        this.client.creerSouris(nom,x,y);
+                        this.client.creerSouris(nom,x,y, drag);
                     }
                 }
 

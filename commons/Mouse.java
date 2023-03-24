@@ -12,21 +12,33 @@ public class Mouse
     public int x;
     public int y;
 
+    private boolean drag;
+
     private static int nbCurseurs = 0;
     private int curseurs;
 
-    public Mouse(String nom, int x, int y )
+    public Mouse(String nom, int x, int y, boolean drag)
     {
         this.nom = nom;
 
         this.x = x;
         this.y = y;
 
+        this.drag = drag;
+
         this.curseurs = Mouse.nbCurseurs++ % 4;
     }
 
     public String getNom() {
         return this.nom;
+    }
+
+    public int getOrientation(){
+        if ( this.drag ) {
+            return  ((int) (Math.random() * 60)) - 30;
+        } else {
+            return 0;
+        }
     }
 
     public Image getImage() {

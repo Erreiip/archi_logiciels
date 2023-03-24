@@ -77,10 +77,14 @@ public class PanelDessin extends JPanel {
                     g2d.fill((Shape) forme);
             }
         }
+
+        AffineTransform old = g2d.getTransform();
         
         ArrayList<Mouse> alSouris = this.ctrl.getAlSouris();
         for (Mouse m : alSouris){
+            g2d.rotate(Math.toRadians(m.getOrientation()));
             g2d.drawImage(m.getImage(), m.x, m.y, null);
+            g2d.setTransform(old);
         }
     }
 
@@ -216,7 +220,7 @@ public class PanelDessin extends JPanel {
                 PanelDessin.this.repaint();
             }
 
-            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY());
+            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY(), true);
         }
 
         public void mouseMoved(MouseEvent e) {
@@ -225,7 +229,7 @@ public class PanelDessin extends JPanel {
                 PanelDessin.this.repaint();
             }
 
-            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY());
+            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY(), false);
         }
     }
 }

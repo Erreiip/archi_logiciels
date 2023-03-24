@@ -128,7 +128,7 @@ public class Serveur
             }
         }
 
-        Mouse m = new Mouse(nom, x, y);
+        Mouse m = new Mouse(nom, x, y, false);
         this.alSouris.add(m);
         
     }

@@ -85,12 +85,12 @@ public class Controleur {
         this.metier.delete();
     }
 
-    public void sendMouse(int x, int y) {
-        this.metier.sendMouse(x,y);
+    public void sendMouse(int x, int y, boolean drag) {
+        this.metier.sendMouse(x,y, drag);
     }
 
-    public void creerSouris(String nom, int x, int y) {
-        this.metier.creerSouris(nom, x, y);
+    public void creerSouris(String nom, int x, int y, boolean drag) {
+        this.metier.creerSouris(nom, x, y, drag);
         ((FrameDessin)this.ihm).maj();
     }
 }

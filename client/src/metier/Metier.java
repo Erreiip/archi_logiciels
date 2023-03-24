@@ -90,11 +90,11 @@ public class Metier
         this.client.delete();   
     }
 
-    public void sendMouse(int x, int y) {
-        this.client.sendMouse(x,y);
+    public void sendMouse(int x, int y, boolean drag) {
+        this.client.sendMouse(x,y, drag);
     }
 
-    public void creerSouris(String nom, int x, int y) {
+    public void creerSouris(String nom, int x, int y, boolean drag) {
         
         if (nom.equals(this.nom))
             return;
@@ -108,7 +108,7 @@ public class Metier
             }
         }
 
-        Mouse m = new Mouse(nom, x, y);
+        Mouse m = new Mouse(nom, x, y, drag);
         this.alSouris.add(m);
     }
 }
