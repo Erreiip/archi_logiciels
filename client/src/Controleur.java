@@ -78,7 +78,9 @@ public class Controleur {
     public void maj(ArrayList<IDessin> alFormes)
     {
         this.metier.maj(alFormes);
-        ((FrameDessin)this.ihm).maj();
+
+        if ( this.ihm instanceof FrameDessin )
+            ((FrameDessin)this.ihm).maj();
     }
 
     public void delete() {
@@ -91,6 +93,8 @@ public class Controleur {
 
     public void creerSouris(String nom, int x, int y, boolean drag) {
         this.metier.creerSouris(nom, x, y, drag);
-        ((FrameDessin)this.ihm).maj();
+        
+        if ( this.ihm instanceof FrameDessin )
+            ((FrameDessin)this.ihm).maj();
     }
 }

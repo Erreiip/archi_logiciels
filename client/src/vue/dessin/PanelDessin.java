@@ -82,7 +82,7 @@ public class PanelDessin extends JPanel {
         
         ArrayList<Mouse> alSouris = this.ctrl.getAlSouris();
         for (Mouse m : alSouris){
-            g2d.rotate(Math.toRadians(m.getOrientation()));
+            g2d.rotate(Math.toRadians(m.getOrientation()), m.x, m.y);
             g2d.drawImage(m.getImage(), m.x, m.y, null);
             g2d.setTransform(old);
         }

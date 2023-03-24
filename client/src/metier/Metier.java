@@ -104,6 +104,7 @@ public class Metier
             if (m.getNom().equals(nom)) {
                 m.x = x;
                 m.y = y;
+                m.drag = drag;
                 return;
             }
         }

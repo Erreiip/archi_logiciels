@@ -12,7 +12,7 @@ public class Mouse
     public int x;
     public int y;
 
-    private boolean drag;
+    public boolean drag;
 
     private static int nbCurseurs = 0;
     private int curseurs;
@@ -35,7 +35,7 @@ public class Mouse
 
     public int getOrientation(){
         if ( this.drag ) {
-            return  ((int) (Math.random() * 60)) - 30;
+            return  ((int) (Math.random() * 2));
         } else {
             return 0;
         }
