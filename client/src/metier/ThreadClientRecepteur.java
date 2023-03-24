@@ -50,6 +50,38 @@ public class ThreadClientRecepteur extends Thread
                     ArrayList<IDessin> alFormes = (ArrayList<IDessin>) objectStream.readObject();
 
                     client.maj( alFormes );
+                } else 
+                {
+                    if ( message.contains("Mouse") ) 
+                    {
+                        String[] tabInfos = message.split(";");
+
+                        String  nom = null;
+                        Integer x   = null;
+                        Integer y   = null;
+
+                        for ( String s : tabInfos )
+                        {
+                            String[] tabSplit = s.split(":");
+
+                            String key   = tabSplit[0];
+                            String value = tabSplit[1];
+
+                            if ( key.equals("Mouse")) {
+                                nom = value;
+                            }
+
+                            if ( key.equals("x")) {
+                                x = Integer.parseInt(value);
+                            }
+
+                            if ( key.equals("y")) {
+                                y = Integer.parseInt(value);
+                            }
+                        }
+
+                        this.client.creerSouris(nom,x,y);
+                    }
                 }
 
             } catch (Exception e) {

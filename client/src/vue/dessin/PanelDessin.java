@@ -219,8 +219,9 @@ public class PanelDessin extends JPanel {
             if(PanelDessin.this.bCreation) {
                 PanelDessin.this.setPointFin(e.getPoint());
                 PanelDessin.this.repaint();
-
             }
+
+            PanelDessin.this.ctrl.sendMouse(e.getX(), e.getY());
         }
     }
 }

@@ -74,6 +74,7 @@ public class ThreadRecepteur extends Thread
         Integer epaisseur = null;
         Integer couleur = null;
         String text = null;
+        String nom = null;
 
         if ( nomClasse.equals(MonTexte.class.getSimpleName()) ) {
 
@@ -105,6 +106,10 @@ public class ThreadRecepteur extends Thread
 
                 if (type.equals("t")) {
                     text = valeur;
+                }
+
+                if (type.equals("n")) {
+                    nom = valeur;
                 }
             }
 
@@ -142,6 +147,10 @@ public class ThreadRecepteur extends Thread
 
                 if (type.equals("h")) {
                     h = Double.parseDouble(valeur);
+                }
+
+                if (type.equals("n")) {
+                    nom = valeur;
                 }
             }
 

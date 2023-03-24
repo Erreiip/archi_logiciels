@@ -3,6 +3,8 @@ package server.src.vue;
 import javax.swing.JFrame;
 import javax.swing.plaf.BorderUIResource;
 
+import client.src.commons.IDessin;
+
 import java.awt.*;
 
 import server.src.Controleur;
@@ -36,6 +38,11 @@ public class FramePrincipale extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+
+    public void ajouterLogs(IDessin forme) {
+        this.pnlLogs.ajouterLog(forme.getClass().getSimpleName());
+    }
+
 
     public void maj() {
         this.pnlDessin.repaint();

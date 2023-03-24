@@ -58,6 +58,8 @@ public class Serveur
     {
         this.tableau.add(forme);
 
+        this.ctrl.ajouterLogs(forme);
+
         try{ this.send(); } catch (Exception e) { e.printStackTrace(); }
     }
 

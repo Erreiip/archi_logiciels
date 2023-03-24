@@ -32,6 +32,10 @@ public class Controleur {
         this.serv.ajouterForme(s);
     }
 
+    public void ajouterLogs(IDessin forme) {
+        this.ihm.ajouterLogs(forme);
+    }
+
     public void send() {
         try {
             this.serv.send();

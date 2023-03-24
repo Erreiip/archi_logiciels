@@ -45,6 +45,9 @@ public class Controleur {
         return ((FrameDessin) this.ihm).getEpaisseur();
     }
 
+    public String getNom() {
+        return this.metier.getNom();
+    }
 
     public void setCouleurCourante(Color couleurCourante) {
         this.metier.setCouleurCourante(couleurCourante);
@@ -75,5 +78,13 @@ public class Controleur {
 
     public void delete() {
         this.metier.delete();
+    }
+
+    public void sendMouse(int x, int y) {
+        this.metier.sendMouse(x,y);
+    }
+
+    public void creerSouris(String nom, int x, int y) {
+        this.metier.creerSouris(nom,x,y);
     }
 }

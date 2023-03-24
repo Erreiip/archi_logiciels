@@ -2,6 +2,7 @@ package client.src.metier;
 
 import client.src.Controleur;
 import client.src.commons.IDessin;
+import client.src.commons.Mouse;
 
 import java.awt.Color;
 import java.awt.Shape;
@@ -20,6 +21,7 @@ public class Metier
     private String actionCourante;
 
     private ArrayList<IDessin> alShape;
+    private ArrayList<Mouse> alSouris;
 
     public Metier( Controleur ctrl )
     {
@@ -63,6 +65,11 @@ public class Metier
         this.nom = nom;
     }
 
+    public String getNom()
+    {
+        return this.nom;
+    }
+
     public void send(IDessin forme)
     {
         this.client.send(forme);
@@ -76,5 +83,13 @@ public class Metier
     public void delete()
     {
         this.client.delete();   
+    }
+
+    public void sendMouse(int x, int y) {
+        this.client.sendMouse(x,y);
+    }
+
+    public void creerSouris(String nom, int x, int y) {
+        
     }
 }

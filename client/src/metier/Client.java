@@ -110,6 +110,18 @@ public class Client
        this.send(envoie);
     }
 
+    public void sendMouse(int x, int y) {
+        String envoie = "";
+        
+        envoie = "Mouse:"+ this.ctrl.getNom() +";x:" + x + ";y:" + y + ";";
+
+        this.send(envoie);
+    }
+
+    public void creerSouris(String nom, int x, int y) {
+        this.ctrl.creerSouris(nom,x,y);
+    }
+
     public void maj(ArrayList<IDessin> alFormes)
     {
         this.ctrl.maj(alFormes);
