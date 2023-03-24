@@ -52,6 +52,37 @@ public class ThreadRecepteur extends Thread
                         this.server.delete();
                     }
 
+                    if ( message.contains("Mouse") ) 
+                    {
+                        String[] tabInfos = message.split(";");
+
+                        String  nom = null;
+                        Integer x   = null;
+                        Integer y   = null;
+
+                        for (int cpt = 0; cpt < tabInfos.length - 1; cpt++ )
+                        {
+                            String[] tabSplit = tabInfos[cpt].split(":");
+
+                            String key   = tabSplit[0];
+                            String value = tabSplit[1];
+
+                            if ( key.equals("Mouse")) {
+                                nom = value;
+                            }
+
+                            if ( key.equals("x")) {
+                                x = Integer.parseInt(value);
+                            }
+
+                            if ( key.equals("y")) {
+                                y = Integer.parseInt(value);
+                            }
+                        }
+
+                        this.server.creerSouris(nom,x,y);
+                    }
+
                 }
 
             } catch(Exception e) { e.printStackTrace(); }

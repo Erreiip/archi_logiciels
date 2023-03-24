@@ -6,6 +6,7 @@ import java.net.MulticastSocket;
 import java.util.ArrayList;
 
 import commons.IDessin;
+import commons.Mouse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -25,6 +26,7 @@ public class Serveur
     private InetAddress mcast;
 
     ArrayList<IDessin> tableau;
+    private ArrayList<Mouse> alSouris;
 
     private Controleur ctrl;
 
@@ -33,6 +35,7 @@ public class Serveur
         this.ctrl = ctrl;
 
         this.tableau  = new ArrayList<IDessin>();
+        this.alSouris  = new ArrayList<Mouse>();
 
         ms = new MulticastSocket(Serveur.PORT);
 
@@ -110,6 +113,23 @@ public class Serveur
         this.tableau.clear();
         try {
             this.send();
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void creerSouris(String nom, int x, int y) {
+        for ( Mouse m : this.alSouris )
+        {
+            if (m.getNom().equals(nom)) {
+                m.x = x;
+                m.y = y;
+                return;
+            }
+        }
+
+        Mouse m = new Mouse(nom, x, y);
+        this.alSouris.add(m);
+        
     }
 }

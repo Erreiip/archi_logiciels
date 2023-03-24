@@ -12,7 +12,7 @@ public class Mouse
     public int x;
     public int y;
 
-    private static int nbCurseurs = 1;
+    private static int nbCurseurs = 0;
     private int curseurs;
 
     public Mouse(String nom, int x, int y )
@@ -22,7 +22,7 @@ public class Mouse
         this.x = x;
         this.y = y;
 
-        this.curseurs = Mouse.nbCurseurs++;
+        this.curseurs = Mouse.nbCurseurs++ % 4;
     }
 
     public String getNom() {
@@ -32,7 +32,7 @@ public class Mouse
     public Image getImage() {
         try{
             BufferedImage bi = ImageIO.read(new File(
-                    "C:\\Users\\Pierre\\Documents\\iut\\s4\\r4.01_architect_logicielle\\archi_logiciels\\images\\cursor" + this.curseurs + ".png"));
+                    "C:\\Users\\Pierre\\Documents\\iut\\s4\\r4.01_architect_logicielle\\archi_logiciels\\images\\cursor" + (this.curseurs + 1) + ".png"));
 
             return bi.getScaledInstance(20, 30, Image.SCALE_DEFAULT);
         } catch (Exception e) {
