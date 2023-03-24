@@ -37,10 +37,10 @@ public class Mouse
 
     public int getOrientation(){
         if ( this.drag ) {
-            if ( orientationInverse ) this.orientation -= 3;
-            else                      this.orientation += 3;
+            if ( orientationInverse ) this.orientation -= 2;
+            else                      this.orientation += 2;
 
-            if ( Math.abs(orientation) == 30) orientationInverse = !orientationInverse;
+            if ( Math.abs(orientation) == 26) orientationInverse = !orientationInverse;
 
             return orientation;
         } else {
