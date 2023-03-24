@@ -50,9 +50,6 @@ public class MaLigne extends Line2D.Double implements IDessin{
     public void draw(Graphics2D g2d) {
         g2d.setColor(this.couleur);
         g2d.setStroke(new BasicStroke(this.epaisseur));
-        if (this.getRemplissage())
-            g2d.fill(this);
-        else
-            g2d.draw(this);
+        g2d.draw(this);
     }
 }

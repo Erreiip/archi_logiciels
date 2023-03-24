@@ -1,10 +1,8 @@
 package commons;
 
 import java.io.Serializable;
-import java.awt.Color;
-import java.awt.Point;
 import java.util.ArrayList;
-import java.awt.Graphics2D;
+import java.awt.*;
 
 public class MonTrace implements IDessin, Serializable {
     
@@ -57,6 +55,8 @@ public class MonTrace implements IDessin, Serializable {
     }
 
     public void draw(Graphics2D g2d) {
+        g2d.setColor(this.couleur);
+        g2d.setStroke(new BasicStroke(this.epaisseur));
         for(int i = 0; i < this.alPoint.size() - 1; i++) {
             g2d.drawLine((int) Math.round(this.alPoint.get(i).getX()),
                          (int) Math.round(this.alPoint.get(i).getY()),
