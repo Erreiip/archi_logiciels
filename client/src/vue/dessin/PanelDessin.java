@@ -197,21 +197,26 @@ public class PanelDessin extends JPanel {
 
         public void mousePressed(MouseEvent e) {
             PanelDessin.this.pntDebut = e.getPoint();
+
             if ( PanelDessin.this.ctrl.getActionCourante().equals("Texte")) {
                 PanelDessin.this.shapeCreation = getShape(e.getPoint());
                 PanelDessin.this.send();
                 return;
             } 
+
             if ( !PanelDessin.this.ctrl.getActionCourante().equals("Effacer")) {
                 PanelDessin.this.bCreation = true;
                 PanelDessin.this.shapeCreation = getShape(e.getPoint());
             }
+
+
         }
 
         public void mouseReleased(MouseEvent e) {
             PanelDessin.this.bCreation = false;
             PanelDessin.this.send();
             PanelDessin.this.repaint();
+            
         }
 
         public void mouseDragged(MouseEvent e) {

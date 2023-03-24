@@ -13,6 +13,8 @@ public class Mouse
     public int y;
 
     public boolean drag;
+    public int orientation;
+    public boolean orientationInverse;
 
     private static int nbCurseurs = 0;
     private int curseurs;
@@ -35,7 +37,12 @@ public class Mouse
 
     public int getOrientation(){
         if ( this.drag ) {
-            return  ((int) (Math.random() * 2));
+            if ( orientationInverse ) this.orientation -= 3;
+            else                      this.orientation += 3;
+
+            if ( Math.abs(orientation) == 30) orientationInverse = !orientationInverse;
+
+            return orientation;
         } else {
             return 0;
         }
