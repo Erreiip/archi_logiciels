@@ -102,9 +102,11 @@ public class ThreadRecepteur extends Thread
 
     public static IDessin traiter(String s) 
     {
-        if ( s.charAt(0) != 'M' && !s.contains("Mouse")) return null;
+        if ( s.contains("Mouse") || s.charAt(0) != 'M') return null;
 
         String[] tabInfos = s.split(";");
+
+        System.out.println(tabInfos.length);
 
         String nomClasse = tabInfos[0];
         Double x = null;
@@ -119,7 +121,7 @@ public class ThreadRecepteur extends Thread
 
         if ( nomClasse.equals(MonTexte.class.getSimpleName()) ) {
 
-            for (int cpt = 1; cpt < tabInfos.length - 1; cpt++) {
+            for (int cpt = 1; cpt < tabInfos.length -1; cpt++) {
                 String[] split = tabInfos[cpt].split(":");
 
                 String type = split[0];
@@ -156,8 +158,9 @@ public class ThreadRecepteur extends Thread
 
         } else {  
 
-            for (int cpt = 1; cpt < tabInfos.length - 1; cpt++) {
+            for (int cpt = 1; cpt < tabInfos.length -1; cpt++) {
                 String[] split = tabInfos[cpt].split(":");
+
 
                 String type = split[0];
                 String valeur = split[1];

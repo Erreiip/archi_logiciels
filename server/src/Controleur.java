@@ -21,7 +21,8 @@ public class Controleur {
     }
 
     public void maj() {
-        this.ihm.maj();
+        if ( ihm != null)
+            this.ihm.maj();
     }
 
     public void clear() {

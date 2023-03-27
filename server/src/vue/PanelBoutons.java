@@ -7,6 +7,9 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import commons.IDessin;
+import commons.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedWriter;
@@ -16,6 +19,7 @@ import java.io.FileWriter;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.io.PrintWriter;
 
 public class PanelBoutons extends JPanel implements ActionListener{
     
@@ -60,16 +64,18 @@ public class PanelBoutons extends JPanel implements ActionListener{
             String filePath = JOptionPane.showInputDialog("Entrez le nom du fichier : ");
 
             try{
-                File file = new File(filePath);
-                ByteArrayOutputStream convert = new ByteArrayOutputStream();
-
-                byte[] bytes = convert.toByteArray();
+                File file = new File(filePath + ".tableau");
+                
+                PrintWriter pw = new PrintWriter(file);
 
                 if(!file.exists()){
                     file.createNewFile();
 
-                    OutputStreamWriter ow = new FileWriter(file.getAbsoluteFile(), StandardCharsets.UTF_8);
-			        BufferedWriter bw = new BufferedWriter(ow);
+                    for (IDessin forme : this.ctrl.getAlShape())
+                    {
+                        pw.println(formaterForme(forme));
+                    }
+                    pw.close();
                 }
 
 			} catch(Exception error){error.printStackTrace();}
@@ -90,7 +96,8 @@ public class PanelBoutons extends JPanel implements ActionListener{
                     Scanner sc = new Scanner(chooser.getSelectedFile());
                     while (sc.hasNextLine())
                     {
-                        String line = sc.nextLine();
+                        String line = sc.nextLine().trim() + " ";
+                        System.out.println(line);
                         this.ctrl.ajouterForme(ThreadRecepteur.traiter(line));
                     }
                 }
@@ -100,4 +107,44 @@ public class PanelBoutons extends JPanel implements ActionListener{
             this.ctrl.send();
         }
     }
-}
+    
+    public String formaterForme(IDessin forme) {
+        if ( forme == null ) return "";
+        
+        Color couleurForme = forme.getCouleur();
+        String envoie = "";
+        if ( forme instanceof MaLigne)
+        {
+            Shape shape = (Shape) forme;
+            MaLigne ligne = (MaLigne) shape;
+            envoie = forme.getClass().getSimpleName() + ";x:" + ligne.getY1() +
+            ";y:" + ligne.getY2() + ";w:" + ligne.getX1() +
+            ";h:" + ligne.getX2() + ";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        } else if ( forme instanceof MonTexte)
+        {
+            MonTexte text = (MonTexte) forme;
+            envoie =  forme.getClass().getSimpleName() + ";x:" + text.getX() +
+            ";y:" + text.getY() + ";t:" + text.getTexte() +";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        } else if ( forme instanceof MonTrace)
+        {
+            envoie = forme.getClass().getSimpleName() + ";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+            MonTrace trace = (MonTrace) forme;
+            for ( int i = 0; i < trace.getAlPoint().size(); i++) {
+                envoie += trace.getAlPoint().get(i).getX() + ":" + trace.getAlPoint().get(i).getY() + ";";
+            }
+        } else 
+        {
+            Shape shape = (Shape) forme;
+            envoie = forme.getClass().getSimpleName() + ";x:" + shape.getBounds2D().getX() +
+            ";y:" + shape.getBounds2D().getY() + ";w:" + shape.getBounds2D().getWidth() +
+            ";h:" + shape.getBounds2D().getHeight() + ";r:" + forme.getRemplissage() +
+            ";e:" + forme.getEpaisseur() + ";c:" + couleurForme.getRGB() + ";";
+        }
+
+        return envoie;
+    }
+}   
+

@@ -128,12 +128,15 @@ public class Serveur
             if (m.getNom().equals(nom)) {
                 m.x = x;
                 m.y = y;
+                this.ctrl.maj();
                 return;
             }
         }
 
         Mouse m = new Mouse(nom, x, y, false);
         this.alSouris.add(m);
+
+        this.ctrl.maj();
         
     }
 
