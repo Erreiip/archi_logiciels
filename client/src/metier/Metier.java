@@ -121,4 +121,9 @@ public class Metier
         this.alSouris.removeIf( s ->(s.getNom().equals(nom)));
     }
 
+    public void close()
+    {
+        this.client.close();
+    }
+
 }

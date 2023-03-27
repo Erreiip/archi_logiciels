@@ -93,7 +93,7 @@ public class Controleur {
 
     public void deco(String nom) {
         this.metier.deco(nom);
-        
+
         if ( this.ihm instanceof FrameDessin )
             ((FrameDessin)this.ihm).maj();
     }
@@ -107,5 +107,12 @@ public class Controleur {
         
         if ( this.ihm instanceof FrameDessin )
             ((FrameDessin)this.ihm).maj();
+    }
+
+    public void dispose()
+    {
+        this.metier.close();
+        this.ihm.dispose();
+        System.exit(0);
     }
 }

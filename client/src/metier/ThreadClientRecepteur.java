@@ -28,6 +28,7 @@ public class ThreadClientRecepteur extends Thread
     {
         while (true) {
             try {
+                
                 DatagramPacket dp = new DatagramPacket(new byte[512], 512);
 
                 this.ms.receive(dp);
@@ -94,6 +95,8 @@ public class ThreadClientRecepteur extends Thread
                         
                         String[] split = message.split(";");
                         nom = split[0].split(":")[1];
+
+                        System.out.println(nom);
 
                         this.client.deco(nom);
                     }

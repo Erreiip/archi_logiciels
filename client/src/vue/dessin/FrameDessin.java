@@ -18,7 +18,6 @@ public class FrameDessin extends JFrame {
     public FrameDessin(Controleur ctrl) {
 
         this.ctrl = ctrl;
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -34,8 +33,9 @@ public class FrameDessin extends JFrame {
 
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
-            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 FrameDessin.this.ctrl.sendClose();
+                FrameDessin.this.ctrl.dispose();
             }
         });
 
@@ -53,6 +53,8 @@ public class FrameDessin extends JFrame {
 
             this.setCursor(cursor);
         }catch(Exception e) { e.printStackTrace(); }
+
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
     }
 

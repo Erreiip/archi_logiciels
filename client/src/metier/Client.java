@@ -30,6 +30,8 @@ public class Client
     private MulticastSocket ms;
 
     private InetAddress mcast; 
+
+    private ThreadClientRecepteur tr;
     
     public Client(Controleur ctrl)
     {
@@ -42,8 +44,8 @@ public class Client
 
             this.ms.joinGroup(this.mcast);
 
-            ThreadClientRecepteur tcr = new ThreadClientRecepteur(this, ms);
-            tcr.start();
+            tr = new ThreadClientRecepteur(this, ms);
+            tr.start();
         }catch(Exception e) { e.printStackTrace(); }
     }
 
@@ -134,5 +136,10 @@ public class Client
     public void maj(ArrayList<IDessin> alFormes)
     {
         this.ctrl.maj(alFormes);
+    }
+
+    public void close()
+    {
+        this.tr.interrupt();
     }
 }
