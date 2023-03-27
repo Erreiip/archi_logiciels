@@ -87,6 +87,14 @@ public class ThreadClientRecepteur extends Thread
 
                         this.client.creerSouris(nom,x,y, drag);
                     }
+                    
+                    if (message.contains("DECO")) 
+                    {
+                        String nom = null;
+                        
+                        String[] split = message.split(";");
+                        nom = split[0].split(":")[1];
+                    }
                 }
 
             } catch (Exception e) {

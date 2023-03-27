@@ -3,6 +3,7 @@ package server.src;
 import java.util.ArrayList;
 
 import commons.IDessin;
+import commons.Mouse;
 import server.src.vue.FramePrincipale;
 
 public class Controleur {
@@ -35,6 +36,10 @@ public class Controleur {
     public void ajouterLogs(IDessin forme) {
         this.ihm.ajouterLogs(forme);
     }
+
+    public ArrayList<Mouse> getAlSouris() {
+        return this.serv.getAlMouse();
+    } 
 
     public void send() {
         try {

@@ -117,6 +117,10 @@ public class Serveur
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Mouse> getAlMouse() {
+        return this.alSouris;
+    }
     
     public void creerSouris(String nom, int x, int y) {
         for ( Mouse m : this.alSouris )

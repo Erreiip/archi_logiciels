@@ -32,7 +32,14 @@ public class FrameDessin extends JFrame {
         this.add(this.panelDessin, BorderLayout.CENTER);
         this.add(this.panelBas, BorderLayout.SOUTH);
 
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                //FrameDessin.this.ctrl.sendClose();
+            }
+        });
+
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(true);
 
         Toolkit tkit = Toolkit.getDefaultToolkit();
