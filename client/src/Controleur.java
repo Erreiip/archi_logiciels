@@ -111,6 +111,7 @@ public class Controleur {
 
     public void dispose()
     {
+        this.metier.sendClose();
         this.metier.close();
         this.ihm.dispose();
         System.exit(0);
