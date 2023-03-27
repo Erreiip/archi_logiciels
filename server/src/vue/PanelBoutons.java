@@ -56,10 +56,10 @@ public class PanelBoutons extends JPanel implements ActionListener{
             this.ctrl.clear();
         }
         else if (e.getSource() == this.btnStop) {
-            System.out.println("Stop le serveur");
+            System.out.println("Arrêt du serveur");
+            System.exit(0);
         }
         else if (e.getSource() == this.btnSauvegarder) {
-            System.out.println("Sauvegarder");
 
             String filePath = JOptionPane.showInputDialog("Entrez le nom du fichier : ");
 
@@ -81,7 +81,6 @@ public class PanelBoutons extends JPanel implements ActionListener{
 			} catch(Exception error){error.printStackTrace();}
         }
         else if (e.getSource() == this.btnOuvrir) {
-            System.out.println("Ouvrir");
 
             try{
 				JFileChooser chooser = new JFileChooser(".");
@@ -97,7 +96,6 @@ public class PanelBoutons extends JPanel implements ActionListener{
                     while (sc.hasNextLine())
                     {
                         String line = sc.nextLine().trim() + " ";
-                        System.out.println(line);
                         this.ctrl.ajouterForme(ThreadRecepteur.traiter(line));
                     }
                 }

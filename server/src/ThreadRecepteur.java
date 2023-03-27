@@ -106,8 +106,6 @@ public class ThreadRecepteur extends Thread
 
         String[] tabInfos = s.split(";");
 
-        System.out.println(tabInfos.length);
-
         String nomClasse = tabInfos[0];
         Double x = null;
         Double y = null;
