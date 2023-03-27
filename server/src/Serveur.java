@@ -136,4 +136,9 @@ public class Serveur
         this.alSouris.add(m);
         
     }
+
+    public void deco(String nom) {
+        this.alSouris.removeIf( s ->(s.getNom().equals(nom)));
+        this.ctrl.maj();
+    }
 }

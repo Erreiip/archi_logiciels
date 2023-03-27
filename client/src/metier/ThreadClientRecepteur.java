@@ -94,6 +94,8 @@ public class ThreadClientRecepteur extends Thread
                         
                         String[] split = message.split(";");
                         nom = split[0].split(":")[1];
+
+                        this.client.deco(nom);
                     }
                 }
 

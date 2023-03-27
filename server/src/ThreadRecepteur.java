@@ -83,6 +83,16 @@ public class ThreadRecepteur extends Thread
                         this.server.creerSouris(nom,x,y);
                     }
 
+                    if (message.contains("DECO")) 
+                    {
+                        String nom = null;
+                        
+                        String[] split = message.split(";");
+                        nom = split[0].split(":")[1];
+
+                        this.server.deco(nom);
+                    }
+
                 }
 
             } catch(Exception e) { e.printStackTrace(); }

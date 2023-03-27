@@ -35,7 +35,7 @@ public class FrameDessin extends JFrame {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                //FrameDessin.this.ctrl.sendClose();
+                FrameDessin.this.ctrl.sendClose();
             }
         });
 
@@ -47,7 +47,7 @@ public class FrameDessin extends JFrame {
         try{
             BufferedImage bi = ImageIO.read(this.ctrl.getClass().getResource("../../images/cursor0.png"));
 
-            Image img = bi.getScaledInstance(20, 30, Image.SCALE_DEFAULT);
+            Image img = bi.getScaledInstance(18, 30, Image.SCALE_DEFAULT);
 
             Cursor cursor = tkit.createCustomCursor(img, new Point(6, 3) , "curseurPerso");
 

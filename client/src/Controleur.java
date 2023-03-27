@@ -87,6 +87,17 @@ public class Controleur {
         this.metier.delete();
     }
 
+    public void sendClose() {
+        this.metier.sendClose();
+    }
+
+    public void deco(String nom) {
+        this.metier.deco(nom);
+        
+        if ( this.ihm instanceof FrameDessin )
+            ((FrameDessin)this.ihm).maj();
+    }
+
     public void sendMouse(int x, int y, boolean drag) {
         this.metier.sendMouse(x,y, drag);
     }

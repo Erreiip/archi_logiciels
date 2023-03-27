@@ -122,6 +122,15 @@ public class Client
         this.ctrl.creerSouris(nom,x,y, drag);
     }
 
+    public void sendClose() {
+        this.send("DECO:" + this.ctrl.getNom() + ";");
+    }
+
+    public void deco(String nom) {
+        this.ctrl.deco(nom);
+    }
+
+
     public void maj(ArrayList<IDessin> alFormes)
     {
         this.ctrl.maj(alFormes);

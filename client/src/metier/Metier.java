@@ -112,4 +112,13 @@ public class Metier
         Mouse m = new Mouse(nom, x, y, drag);
         this.alSouris.add(m);
     }
+
+    public void sendClose() {
+        this.client.sendClose();
+    }
+
+    public void deco(String nom) {
+        this.alSouris.removeIf( s ->(s.getNom().equals(nom)));
+    }
+
 }
